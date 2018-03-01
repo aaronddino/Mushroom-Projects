@@ -1,4 +1,4 @@
-# Mushroom-Projects
+# Mushroom Projects
 ![alt-text][mushroom-img]
 
 ### Welcome to the team. (Aarond, Alice, Raj, James)
