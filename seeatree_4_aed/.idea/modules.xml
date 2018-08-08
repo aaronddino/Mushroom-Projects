@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/seeatree_4_aed.iml" filepath="$PROJECT_DIR$/seeatree_4_aed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seeatree_4_aed_android.iml" filepath="$PROJECT_DIR$/seeatree_4_aed_android.iml" />
+    </modules>
+  </component>
+</project>

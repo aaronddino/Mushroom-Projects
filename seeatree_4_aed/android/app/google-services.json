@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "811666961077",
+    "firebase_url": "https://tree-data-db759.firebaseio.com",
+    "project_id": "tree-data-db759",
+    "storage_bucket": "tree-data-db759.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811666961077:android:5ffc5064850fbcc5",
+        "android_client_info": {
+          "package_name": "com.example.seeatree4aed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811666961077-0r0giov4ji34d0pegrb3in4pdutnoacu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR1TxRicZHixsf0XlgYXiWbIchPOQ3jLg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
