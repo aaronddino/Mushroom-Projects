@@ -82,7 +82,7 @@ class LandmarkStatusPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       globals.item.landmark = "Yes";
-                      Navigator.of(context).pushNamed("/SizeStatus");
+                      Navigator.of(context).pushNamed("/image");
                     },
                   ),
                   new RaisedButton(

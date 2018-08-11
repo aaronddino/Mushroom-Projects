@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:math';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals; 
 import 'package:seeatree_4_aed/objects/itemconstructor.dart'; 
+
 
 class SubmitStatusPage extends StatefulWidget{
   @override
@@ -23,9 +30,27 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
     final FirebaseDatabase database = FirebaseDatabase.instance;
     itemref = database.reference().child('items');
 
+
   }
 
+  String _path;
 
+  Future<Null> uploadfile(String filepath) async {
+    //file conversion
+    final ByteData bytes = await rootBundle.load(filepath);
+    final Directory tempDir = Directory.systemTemp;
+    final String filename = "${Random().nextInt(10000)}.png}";
+    final File file = File('${tempDir.path}/$filename');
+    file.writeAsBytes(bytes.buffer.asInt8List(), mode: FileMode.write);
+
+    //storage logic
+    final StorageReference ref = FirebaseStorage.instance.ref().child(filename);
+    final StorageUploadTask task = ref.putFile(file);
+    final Uri downloadUrl = (await task.future).downloadUrl;
+    _path = downloadUrl.toString();
+    print(_path);
+
+  }
 
 
 
@@ -37,6 +62,26 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: filenames.map((name) => GestureDetector(
+                onTap: ()async{
+                  await uploadfile(name);
+                },
+                child: Image.asset(
+                  name,
+                  width: 100.0,
+                ))).toList(),
+
+                ),
+                Container(
+                  color: Colors.black,
+                  width: 150.0,
+                  height: 150.0,
+                  child:Image.network("https://firebasestorage.googleapis.com/v0/b/tree-data-db759.appspot.com/o/pusheen-desktop-wallpaper.jpg?alt=media&token=cf5ae4c1-cf6e-451a-a0a4-9beac74fc8ce"),
+                ),
+
+
             new Text("landmark " + globals.item.landmark, style: new TextStyle(color: Colors.white,),),
             new Text("height " + globals.item.height, style: new TextStyle(color: Colors.white,),),
             new Text("health " + globals.item.health, style: new TextStyle(color: Colors.white,),),
@@ -55,8 +100,19 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
             ),
             
           ],
+
         ),
+  
+        
       ),
+
     );
   }
 }
+
+List<String> filenames = <String>[
+  'assets/tree1.png',
+  'assets/tree2.png',
+  'assets/tree3.png',
+
+];

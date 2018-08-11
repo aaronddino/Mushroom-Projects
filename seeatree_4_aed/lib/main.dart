@@ -25,6 +25,7 @@ import 'package:seeatree_4_aed/pages/addtree/9_historical_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/10_shape_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/11_habitat_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/12_submit_page.dart';
+import 'package:seeatree_4_aed/pages/addtree/image_page.dart';
 import 'package:seeatree_4_aed/pages/mytrees/1_my_trees_page.dart';
 import 'package:seeatree_4_aed/pages/community/1_community_page.dart';
 import 'package:seeatree_4_aed/pages/mytrees/view_map.dart';
@@ -55,6 +56,7 @@ void main(){
       "/NameofSpecies": (BuildContext context) => new NameofSpeciesPage(),
       "/ViewMap": (BuildContext context) => new ViewMapPage(),
       "/Submit": (BuildContext context) => new SubmitStatusPage(),
+      "/image": (BuildContext context) => new ImagePage(),
     }
   ));
 }

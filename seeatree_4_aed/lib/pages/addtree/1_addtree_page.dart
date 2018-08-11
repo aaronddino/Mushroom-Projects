@@ -11,9 +11,37 @@ Purpose:
 
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 //#2 Add Tree Page
-class AddTreePage extends StatelessWidget{
+
+class AddTreePage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState(){
+    return new AddTreePageState();
+  }
+
+}
+class AddTreePageState extends State<AddTreePage>{
+  File image;
+  File image2;
+
+  picker()async{
+    File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    if(img != null){
+      if(image != null){
+        image2 = img;
+      }else{
+        image = img;
+      }
+      setState(() {});
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -35,7 +63,7 @@ class AddTreePage extends StatelessWidget{
                     color: Colors.grey[200],
                     icon: new Icon(Icons.camera_alt, color: Colors.black),
                     iconSize: 50.0, 
-                    onPressed: null
+                    onPressed: picker, ///here
                   ),
                   new Text("Take Photo!", style: new TextStyle(fontSize: 15.0), textAlign: TextAlign.center,),
                 ],
@@ -44,8 +72,20 @@ class AddTreePage extends StatelessWidget{
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  new Image(image: new AssetImage("assets/photo1.jpg"), width: 100.0, height: 100.0),
-                  new Image(image: new AssetImage("assets/photo2.jpg"), width: 100.0, height: 100.0),
+                  Container(
+                    width: 100.0,
+                    height: 100.0,
+                     child: image == null
+                        ? new Text('No Image to Show ')
+                        : new Image.file(image),
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 100.0,
+                     child: image2 == null
+                        ? new Text('No Image to Show ')
+                        : new Image.file(image2),
+                  ),
                 ],
               ),
               new RaisedButton(
