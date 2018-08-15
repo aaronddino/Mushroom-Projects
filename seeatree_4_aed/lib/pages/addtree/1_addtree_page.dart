@@ -53,8 +53,20 @@ class AddTreePageState extends State<AddTreePage> {
     print(_path);
   }
 
-  picker() async {
+  camera() async {
     File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    if (img != null) {
+      if (image != null) {
+        image2 = img;
+      } else {
+        image = img;
+      }
+      setState(() {});
+    }
+  }
+
+  picker() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
     if (img != null) {
       if (image != null) {
         image2 = img;
@@ -105,9 +117,7 @@ class AddTreePageState extends State<AddTreePage> {
                   color: Colors.grey[200],
                   icon: new Icon(Icons.camera_alt, color: Colors.black),
                   iconSize: 50.0,
-                  onPressed: picker,
-
-                  ///here
+                  onPressed: camera,
                 ),
                 new Text(
                   "Take Photo!",
@@ -123,12 +133,15 @@ class AddTreePageState extends State<AddTreePage> {
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Container(
+                new RaisedButton(
+                  onPressed: picker,
+                  child:Container(
                   width: 100.0,
                   height: 100.0,
                   child: image == null
                       ? new Text('No Image to Show ')
                       : new Image.file(image),
+                ),
                 ),
                 Container(
                   width: 100.0,
