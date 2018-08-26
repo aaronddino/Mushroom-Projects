@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:seeatree_4_aed/objects/item.dart' as globals; 
+import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:typed_data';
 import 'dart:math';
@@ -21,8 +21,6 @@ import 'dart:async';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
-
-
 
 //#2 Add Tree Page
 
@@ -36,10 +34,26 @@ class AddTreePage extends StatefulWidget {
 class AddTreePageState extends State<AddTreePage> {
   File image;
   File image2;
-  String _path;
- 
- 
+  String _path = "";
 
+  String _text = "";
+  
+
+
+
+ 
+  void _showAlert(String value){
+    if(value.isEmpty) return;
+
+    AlertDialog dialog = new AlertDialog(
+      content: new Text(value,
+      style: new TextStyle(fontSize: 30.0),),
+      actions: <Widget>[
+        new FlatButton(onPressed: (){Navigator.pop(context);} ,child: new Text('Okay'),),
+      ],
+    );
+    showDialog(context: context, child: dialog);
+  }
 
   Future<Null> uploadfile(File file) async {
     //file conversion
@@ -49,15 +63,31 @@ class AddTreePageState extends State<AddTreePage> {
     final StorageReference ref = FirebaseStorage.instance.ref().child(filename);
     final StorageUploadTask task = ref.putFile(file);
     final Uri downloadUrl = (await task.future).downloadUrl;
-    _path = downloadUrl.toString();
-    print(_path);
+    globals.item.image1 = downloadUrl.toString();
+    print(globals.item.image1);
+  
   }
+  Future<Null> uploadfile2(File file) async {
+    //file conversion
+    final String filename = "${Random().nextInt(10000)}.png}";
 
+    //storage logic
+    final StorageReference ref = FirebaseStorage.instance.ref().child(filename);
+    final StorageUploadTask task = ref.putFile(file);
+    final Uri downloadUrl = (await task.future).downloadUrl;
+    globals.item.image2 = downloadUrl.toString();
+    print(globals.item.image2);
+  
+  }
   camera() async {
     File img = await ImagePicker.pickImage(source: ImageSource.camera);
     if (img != null) {
       if (image != null) {
         image2 = img;
+        if (image2 != null) {
+          image2 = image;
+          image = img;
+        }
       } else {
         image = img;
       }
@@ -65,16 +95,20 @@ class AddTreePageState extends State<AddTreePage> {
     }
   }
 
-  picker() async {
+  picker1() async {
     File img = await ImagePicker.pickImage(source: ImageSource.gallery);
     if (img != null) {
-      if (image != null) {
-        image2 = img;
-      } else {
-        image = img;
-      }
-      setState(() {});
+      image = img;
     }
+    setState(() {});
+  }
+
+  picker2() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if (img != null) {
+      image2 = img;
+    }
+    setState(() {});
   }
 
   @override
@@ -134,21 +168,24 @@ class AddTreePageState extends State<AddTreePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 new RaisedButton(
-                  onPressed: picker,
-                  child:Container(
-                  width: 100.0,
-                  height: 100.0,
-                  child: image == null
-                      ? new Text('No Image to Show ')
-                      : new Image.file(image),
+                  onPressed: picker1,
+                  child: Container(
+                    width: 100.0,
+                    height: 100.0,
+                    child: image == null
+                        ? new Text('No Image to Show ')
+                        : new Image.file(image),
+                  ),
                 ),
-                ),
-                Container(
-                  width: 100.0,
-                  height: 100.0,
-                  child: image2 == null
-                      ? new Text('No Image to Show ')
-                      : new Image.file(image2),
+                new RaisedButton(
+                  onPressed: picker2,
+                  child: Container(
+                    width: 100.0,
+                    height: 100.0,
+                    child: image2 == null
+                        ? new Text('No Image to Show ')
+                        : new Image.file(image2),
+                  ),
                 ),
               ],
             ),
@@ -160,14 +197,21 @@ class AddTreePageState extends State<AddTreePage> {
                 ],
               ),
               onPressed: () {
-                    uploadfile(image);
- 
-                Navigator.of(context).pushNamed("/Rules");
+                if (image != null) {
+                  if (image2 != null) {
+                    uploadfile2(image2);
+                  }
+                  uploadfile(image);
+
+                  
+                  
+                  Navigator.of(context).pushNamed("/Rules");
+                }else{
+                  _showAlert("Please take or select a photo!");
+                }
               },
             )
           ]))),
     );
   }
 }
-
-

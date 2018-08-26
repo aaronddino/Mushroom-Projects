@@ -13,8 +13,10 @@ class Item{
   String historical;
   String shape;
   String habitat;
+  String image1;
+  String image2;
 
-  Item(this.health, this.landmark, this.height,this.girth, this.canopy, this.botanical, this.historical, this.shape,this.habitat);
+  Item(this.health, this.landmark, this.height,this.girth, this.canopy, this.botanical, this.historical, this.shape,this.habitat, this.image1,this.image2);
 
   Item.fromSnapshot(DataSnapshot snapshot)
     : key = snapshot.key,
@@ -26,7 +28,9 @@ class Item{
       botanical = snapshot.value["botanical"],
       historical = snapshot.value["historical"],
       shape = snapshot.value["shape"],
-      habitat = snapshot.value["habitat"];
+      habitat = snapshot.value["habitat"],
+      image1 = snapshot.value["image1"],
+      image2 = snapshot.value["image2"];
 
   toJson(){
     return{
@@ -39,6 +43,8 @@ class Item{
       "Historical" : historical,
       "Shape" : shape,
       "Habitat" : habitat,
+      "Image 1": image1,
+      "Image 2": image2,
     };
   }
 

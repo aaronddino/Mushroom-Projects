@@ -62,7 +62,7 @@ class HabitatStatusPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     globals.item.habitat = "Yes";
-                    Navigator.of(context).pushNamed("/NameofSpecies");
+                    Navigator.of(context).pushNamed("/Species");
                   },
                 ),
                 new RaisedButton(
@@ -74,7 +74,7 @@ class HabitatStatusPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     globals.item.habitat = "No";
-                    Navigator.of(context).pushNamed("/NameofSpecies");
+                    Navigator.of(context).pushNamed("/Species");
                   },
                 ),
               ],
@@ -82,7 +82,7 @@ class HabitatStatusPage extends StatelessWidget {
             new TextButton(
               text: "I'm not sure",
               color: Colors.white,
-              nextpage: "/Submit",
+              nextpage: "/Species",
             ),
           ],
         ));

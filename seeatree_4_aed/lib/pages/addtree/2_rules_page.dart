@@ -63,14 +63,14 @@ class RulesPage extends StatelessWidget{
                   new PictureButton(
                     image: "assets/Landmark.png",
                     text: "Landmark",
-                    nextpage: "/MyTrees",
+                    nextpage: "/LandmarkInfo",
                     width: 150.0,
                     height: 50.0,
                   ),
                   new PictureButton(
                     image: "assets/Shape.png",
                     text: "Strange",
-                    nextpage: "/MyTrees",
+                    nextpage: "/ShapeInfo",
                     width: 150.0,
                     height: 50.0,
                   ),
@@ -82,7 +82,7 @@ class RulesPage extends StatelessWidget{
                   new PictureButton(
                     image: "assets/Botanical.png",
                     text: "Rare",
-                    nextpage: "/MyTrees",
+                    nextpage: "/RareInfo",
                     width: 150.0,
                     height: 50.0,
                   ),

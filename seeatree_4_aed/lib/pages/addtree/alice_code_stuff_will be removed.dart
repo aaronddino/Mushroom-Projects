@@ -78,7 +78,7 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
                   color: Colors.black,
                   width: 150.0,
                   height: 150.0,
-                  child:Image.network("https://firebasestorage.googleapis.com/v0/b/tree-data-db759.appspot.com/o/pusheen-desktop-wallpaper.jpg?alt=media&token=cf5ae4c1-cf6e-451a-a0a4-9beac74fc8ce"),
+                  child:Image.network(globals.item.image1),
                 ),
 
 
@@ -91,6 +91,9 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
             new Text("historical " + globals.item.historical, style: new TextStyle(color: Colors.white,),),
             new Text("shape " + globals.item.shape, style: new TextStyle(color: Colors.white,),),
             new Text("habitat " + globals.item.habitat, style: new TextStyle(color: Colors.white,),),
+
+            new Text("Image 1 " + globals.item.image1, style: new TextStyle(color: Colors.white,),),
+            new Text("Image 2 " + globals.item.image2, style: new TextStyle(color: Colors.white,),),
             new RaisedButton(
               color: Colors.black,
               onPressed: (){
