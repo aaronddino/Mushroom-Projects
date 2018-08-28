@@ -19,6 +19,8 @@ class SubmitStatusPage extends StatefulWidget{
 
 class SubmitStatusPageState extends State<SubmitStatusPage>{
 
+
+
   Item send = globals.item;
   DatabaseReference itemref;
 
@@ -56,6 +58,9 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
 
   @override
   Widget build(BuildContext context){
+      DateTime today = new DateTime.now();
+      String dateSlug ="${today.day.toString()}-${today.month.toString().padLeft(2,'0')}-${today.year.toString().padLeft(2,'0')}";
+      print(dateSlug);
      return new Material(
       color: Colors.pinkAccent,
       child: new InkWell(
@@ -97,6 +102,7 @@ class SubmitStatusPageState extends State<SubmitStatusPage>{
             new RaisedButton(
               color: Colors.black,
               onPressed: (){
+                globals.item.date = dateSlug;
                 itemref.push().set(send.toJson());
               },
 

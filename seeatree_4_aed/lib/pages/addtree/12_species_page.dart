@@ -12,6 +12,7 @@ Purpose:
 
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
+import 'package:seeatree_4_aed/objects/item.dart' as globals;
 
 /*might try out https://flutter.io/cookbook/lists/grid-lists/ */
 
@@ -21,6 +22,8 @@ class SpeciesPage extends StatefulWidget{
 }
 
 class SpeciesPageState extends State<SpeciesPage>{
+
+  
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -45,8 +48,15 @@ class SpeciesPageState extends State<SpeciesPage>{
                   return new Container(
                     child: new Column(
                       children: <Widget>[
-                        new Image(image: new AssetImage("assets/samplefeature.jpg"), height: 200.0, width: 500.0),
-                        new Image(image: new AssetImage("assets/samplefeature2.jpg"), height: 200.0, width: 500.0),
+                        new RaisedButton(
+                          onPressed: (){globals.item.species = "purple";},
+                          child: new Image(image: new AssetImage("assets/samplefeature.jpg"), height: 200.0, width: 500.0),
+                        ),
+                        new RaisedButton(
+                          onPressed: (){globals.item.species = "white";},
+                          child: new Image(image: new AssetImage("assets/samplefeature2.jpg"), height: 200.0, width: 500.0),
+                        ),
+
                       ],
                     )
                   );
@@ -56,7 +66,7 @@ class SpeciesPageState extends State<SpeciesPage>{
           new TextButton( /*Not sure Button */
             text: "I'm not sure",
             color: Colors.white,
-            nextpage: "/Submission"
+            nextpage: "/Submission",
           ),
       ],)
     );

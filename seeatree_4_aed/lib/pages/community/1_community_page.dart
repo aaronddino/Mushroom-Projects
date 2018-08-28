@@ -11,6 +11,10 @@ Purpose:
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:map_view/map_view.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:seeatree_4_aed/objects/itemconstructor.dart'; 
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 //import 'dart:async';
 
 var apiKey = "";
@@ -21,6 +25,9 @@ class CommunityTreesPage extends StatefulWidget{
 }
 
 class CommunityTreesState extends State<CommunityTreesPage>{
+  List<Item> items = List();
+  Item item;
+  DatabaseReference itemRef;
   MapView mapView = new MapView();
   CameraPosition cameraPosition;
   var staticMapProvider = new StaticMapProvider(apiKey);
@@ -42,6 +49,27 @@ class CommunityTreesState extends State<CommunityTreesPage>{
     super.initState();
     cameraPosition = new CameraPosition(new Location(/*latitude*/-27.340060, /*longitude*/153.038300), /*zoom*/2.0);
     staticMapUri = staticMapProvider.getStaticUri(new Location(-27.340060,153.038300), 12, height: 100, width: 400, mapType: StaticMapViewType.roadmap);
+    final FirebaseDatabase database = FirebaseDatabase.instance; //Rather then just writing FirebaseDatabase(), get the instance.  
+    itemRef = database.reference().child('items');
+    itemRef.onChildAdded.listen(_onEntryAdded);
+    itemRef.onChildChanged.listen(_onEntryChanged);
+
+    
+  }
+
+    _onEntryAdded(Event event) {
+    setState(() {
+      items.add(Item.fromSnapshot(event.snapshot));
+    });
+  }
+
+  _onEntryChanged(Event event) {
+    var old = items.singleWhere((entry) {
+      return entry.key == event.snapshot.key;
+    });
+    setState(() {
+      items[items.indexOf(old)] = Item.fromSnapshot(event.snapshot);
+    });
   }
 
   @override
@@ -73,23 +101,27 @@ class CommunityTreesState extends State<CommunityTreesPage>{
               new TextCard(text:"Most Recent", size: 15.0, box:Colors.grey[200]),
             ],
           ),
-          new Container(
-            height: 400.0,
-            child: new ListView.builder(
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index){
-                  return new Container(
-                    child: new Column(
-                      children: <Widget>[
-                        new Image(image: new AssetImage("assets/sampletree.jpg"), height: 200.0, width: 500.0),
-                        new Text("Date:"+"29/05/18", style: new TextStyle(fontSize: 12.0, color: Colors.black)),
-                        new Text("Name:"+"Sample Name", style: new TextStyle(fontSize: 12.0, color: Colors.black)),
-                      ],
-                    )
-                  );
-                }
-              ),
-          ),
+           Flexible(
+            child: FirebaseAnimatedList(
+              query: FirebaseDatabase.instance.reference().child('items'),
+              itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                  Animation<double> animation, int index) {
+
+                return new ListTile(
+                  title: Text("Species: "+ snapshot.value.toString().split("Species: ")[1].split(", Habitat")[0]),
+                  leading: Container(
+                    height:50.0,
+                    width: 50.0,
+                    color: Colors.blueGrey,
+                    child:Image.network(snapshot.value.toString().split(", Date")[0].split("Image 1: ")[1]),
+                  ),
+                  
+
+                  subtitle: Text("Date: "+ snapshot.value.toString().split("Date: ")[1].split(", Girth")[0])
+                );
+              },
+            ),
+           ),
         ],
       ),
     );
