@@ -108,7 +108,7 @@ class CommunityTreesState extends State<CommunityTreesPage>{
                   Animation<double> animation, int index) {
 
                 return new ListTile(
-                  title: Text("Species: "+ snapshot.value.toString().split("Species: ")[1].split(", Habitat")[0]),
+                  title: Text("Species: "+ snapshot.value.toString().split("Species: ")[1].split(",")[0]),
                   leading: Container(
                     height:50.0,
                     width: 50.0,
@@ -117,7 +117,7 @@ class CommunityTreesState extends State<CommunityTreesPage>{
                   ),
                   
 
-                  subtitle: Text("Date: "+ snapshot.value.toString().split("Date: ")[1].split(", Girth")[0])
+                  subtitle: Text("Date: "+ snapshot.value.toString().split("Date: ")[1].split(",")[0])
                 );
               },
             ),
