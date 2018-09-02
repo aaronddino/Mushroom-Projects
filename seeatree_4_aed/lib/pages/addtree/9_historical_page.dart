@@ -70,11 +70,18 @@ class HistoricalStatusPage extends StatelessWidget{
                 ),
             ],
           ),
-          new TextButton(
-            text: "I'm not sure",
-            color: Colors.white,
-            nextpage: "/ShapeStatus",
-          ),
+          new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.historical = "n/a";
+                  Navigator.of(context).pushNamed("/ShapeStatus");
+                },
+              ),
       ],)
     );
   }

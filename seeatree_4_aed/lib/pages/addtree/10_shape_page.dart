@@ -71,11 +71,18 @@ class ShapeStatusPage extends StatelessWidget{
                 ),
             ],
           ),
-          new TextButton(
-            text: "I'm not sure",
-            color: Colors.white,
-            nextpage: "/HabitatStatus",
-          ),
+          new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.shape = "n/a";
+                  Navigator.of(context).pushNamed("/HabitatStatus");
+                },
+              ),
       ],)
     );
   }

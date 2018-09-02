@@ -142,7 +142,7 @@ class HealthConditionsState extends State<HealthConditionsPage>{
                   ],
                 ),
                 onPressed: () {
-                  globals.item.health = currentcondition;
+                  globals.item.health = currentcondition.split(". ")[1];
                   Navigator.of(context).pushNamed("/LandmarkStatus");},
               ),
         ],

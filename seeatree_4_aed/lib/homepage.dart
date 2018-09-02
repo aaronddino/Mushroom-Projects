@@ -10,9 +10,12 @@ Purpose:
 
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 //#1: Home Page of the See A Tree App
 class HomePage extends StatelessWidget{
+
+
   @override
   Widget build(BuildContext context){
     return new Scaffold(

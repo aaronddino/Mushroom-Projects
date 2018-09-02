@@ -17,6 +17,11 @@ class Item {
   String date;
   String image1;
   String image2;
+  dynamic longitude;
+  dynamic latitude;
+  
+
+
 
   Item(
       this.health,

@@ -70,11 +70,18 @@ class BotanicalStatusPage extends StatelessWidget{
                 ),
             ],
           ),
-          new TextButton(
-            text: "I'm not sure",
-            color: Colors.white,
-            nextpage: "/HistoricalStatus",
-          ),
+          new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.botanical = "n/a";
+                  Navigator.of(context).pushNamed("/HistoricalStatus");
+                },
+              ),
       ],)
     );
   }

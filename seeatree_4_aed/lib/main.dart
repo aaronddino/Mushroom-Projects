@@ -28,8 +28,7 @@ import 'package:seeatree_4_aed/pages/addtree/12_species_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/12.5_species_information.dart';
 import 'package:seeatree_4_aed/pages/addtree/13_submission_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/14_submitted_page.dart';
-import 'package:seeatree_4_aed/pages/addtree/alice_code_stuff_will be removed.dart';
-import 'package:seeatree_4_aed/pages/addtree/image_page.dart';
+
 import 'package:seeatree_4_aed/pages/mytrees/1_my_trees_page.dart';
 import 'package:seeatree_4_aed/pages/community/1_community_page.dart';
 import 'package:seeatree_4_aed/pages/mytrees/view_map.dart';
@@ -64,10 +63,10 @@ void main(){
       "/HabitatStatus": (BuildContext context) => new HabitatStatusPage(),
       "/Species": (BuildContext context) => new SpeciesPage(),
       "/ViewMap": (BuildContext context) => new ViewMapPage(),
-      "/Submit": (BuildContext context) => new SubmitStatusPage(),
+
       "/Submission": (BuildContext context) => new SubmissionPage(),
       "/Submitted": (BuildContext context) => new SubmittedPage(),
-      "/image": (BuildContext context) => new ImagePage(),
+
       "/speciesinfo": (BuildContext context) => new SpeciesinformationPage(),
       //info screens
       "/LandmarkInfo": (BuildContext context) => new LandmarkInfoPage(),

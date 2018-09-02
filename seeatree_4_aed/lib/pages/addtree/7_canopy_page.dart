@@ -73,11 +73,18 @@ class CanopyStatusPage extends StatelessWidget {
                   globals.item.canopy="covered";
                   Navigator.of(context).pushNamed("/BotanicalStatus");
                 }),
-            new TextButton(
-              text: "I'm not sure",
-              color: Colors.white,
-              nextpage: "/BotanicalStatus",
-            ),
+             new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.canopy = "n/a";
+                  Navigator.of(context).pushNamed("/BotanicalStatus");
+                },
+              ),
           ],
         ));
   }

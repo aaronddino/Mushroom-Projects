@@ -18,6 +18,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:typed_data';
 import 'dart:math';
 import 'dart:async';
+//import 'package:geolocation/geolocation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
@@ -35,7 +36,6 @@ class AddTreePageState extends State<AddTreePage> {
   File image;
   File image2;
   String _path = "";
-
   String _text = "";
   
 
@@ -110,6 +110,25 @@ class AddTreePageState extends State<AddTreePage> {
     }
     setState(() {});
   }
+  /*
+  @override
+  void initState() {
+      // TODO: implement initState
+      super.initState();
+      checkGPS();
+    }
+
+    checkGPS() async{
+      final GeolocationResult result = await Geolocation.isLocationOperational();
+      if(result.isSuccessful){
+        print("success");
+      }else{
+        print("Failed");
+      }
+    }
+    */
+
+  
 
   @override
   Widget build(BuildContext context) {

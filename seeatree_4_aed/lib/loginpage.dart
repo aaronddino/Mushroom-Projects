@@ -109,7 +109,11 @@ class _LoginPageState extends State<LoginPage> {
       return [
         new RaisedButton(
             child: new Text('Login', style: new TextStyle(fontSize: 20.0)),
-            onPressed: validateAndSubmit,
+            onPressed: (){
+              validateAndSubmit();
+              Navigator.of(context).pushNamed("/HomePage");
+
+            },
           ),
         new FlatButton(
             child: new Text('Create an Account', style: TextStyle(color: Colors.black45)),

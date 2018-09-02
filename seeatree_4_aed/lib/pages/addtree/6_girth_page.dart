@@ -32,7 +32,7 @@ class GirthStatusPage extends StatelessWidget{
                   new Text("Hold?"),
                   ],),
                 onPressed: () {
-                  globals.item.girth = "small";
+                  globals.item.girth = "0.5-1 metres";
                   Navigator.of(context).pushNamed("/CanopyStatus");}
               ),
           new RaisedButton(
@@ -44,7 +44,7 @@ class GirthStatusPage extends StatelessWidget{
                   new Text("Hug?"),
                   ],),
                 onPressed: () {
-                  globals.item.girth = "medium";
+                  globals.item.girth = "1-2 metres";
                   Navigator.of(context).pushNamed("/CanopyStatus");}
               ),
           new RaisedButton(
@@ -56,7 +56,7 @@ class GirthStatusPage extends StatelessWidget{
                   new Text("Couple hug?"),
                   ],),
                 onPressed: () {
-                  globals.item.girth = "large";
+                  globals.item.girth = "2-3 metres";
                   Navigator.of(context).pushNamed("/CanopyStatus");}
               ),
           new RaisedButton(
@@ -68,15 +68,22 @@ class GirthStatusPage extends StatelessWidget{
                   new Text("Group hug?"),
                   ],),
                 onPressed: () {
-                  globals.item.girth = "Jumbo";
+                  globals.item.girth = "greater than 3 metres";
                   Navigator.of(context).pushNamed("/CanopyStatus");}
               ),
 
-          new TextButton(
-            text: "I'm not sure",
-            color: Colors.white,
-            nextpage: "/CanopyStatus",
-          ),
+          new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.girth = "n/a";
+                  Navigator.of(context).pushNamed("/CanopyStatus");
+                },
+              ),
         ],
       )
     );

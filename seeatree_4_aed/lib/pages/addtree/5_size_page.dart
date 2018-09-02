@@ -42,7 +42,7 @@ class SizeStatusPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      globals.item.height = "Tiny";
+                      globals.item.height = "5-10 metres";
                       Navigator.of(context).pushNamed("/GirthStatus");
                     }),
                 new RaisedButton(
@@ -57,7 +57,7 @@ class SizeStatusPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      globals.item.height = "Medium";
+                      globals.item.height = "10-20 metres";
                       Navigator.of(context).pushNamed("/GirthStatus");
                     }),
               ],
@@ -77,7 +77,7 @@ class SizeStatusPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      globals.item.height = "Large";
+                      globals.item.height = "20-30 metres";
                       Navigator.of(context).pushNamed("/GirthStatus");
                     }),
                 new RaisedButton(
@@ -92,16 +92,23 @@ class SizeStatusPage extends StatelessWidget {
                       ],
                     ),
                     onPressed: () {
-                      globals.item.height = "Jumbo";
+                      globals.item.height = "greater than 30 metres";
                       Navigator.of(context).pushNamed("/GirthStatus");
                     }),
               ],
             ),
-            new TextButton(
-              text: "I'm not sure",
-              color: Colors.white,
-              nextpage: "/GirthStatus",
-            ),
+            new RaisedButton(
+                color: Colors.white,
+                child: new Column(
+                  children: <Widget>[
+                    new Text("I'm not sure"),
+                  ],
+                ),
+                onPressed: () {
+                  globals.item.height = "n/a";
+                  Navigator.of(context).pushNamed("/GirthStatus");
+                },
+              ),
           ],
         ));
   }
