@@ -7,6 +7,7 @@ dependencies:
   firebase_database: ^0.4.1
   firebase_core: any #higher
   firebase_storage: "^1.0.1"
+  firebase_auth:
   map_view: "^0.0.14"
   image_picker:
   path_provider: ^0.4.0
@@ -64,6 +65,31 @@ flutter:
   - assets/sampletree.jpg
   - assets/samplefeature.jpg
   - assets/samplefeature2.jpg
+  - assets/Bangalow_Palm.jpg
+  - assets/Bangalow_Palm_1.jpg
+  - assets/Bangalow_Palm_2.jpg
+  - assets/Bangalow_Palm_3.jpg
+  - assets/Blueberry_Ash.jpg
+  - assets/Blueberry_Ash_1.jpg
+  - assets/Blueberry_Ash_2.jpg
+  - assets/Blueberry_Ash_3.jpg
+  - assets/Broad_leaf_paperbark.jpg
+  - assets/Brush_Box.jpg
+  - assets/Coastal_Banksia.jpg
+  - assets/Eprapah_Wattle.jpg
+  - assets/Forest_She_oak.jpg
+  - assets/Grey_Myrtle.jpg
+  - assets/Macaranga.jpg
+  - assets/Native_Frangipani.jpg
+  - assets/Native_Mulberry_Tree_1.jpg
+  - assets/Pink_Euodia.jpg
+  - assets/Pink_Tips_Bottlebrush.jpg
+  - assets/Plunkett_Mallee.jpg
+  - assets/Scribbly_Gum.jpg
+  - assets/Small_leafed_lilly_pilly.jpg
+  - assets/Tallowwood.jpg
+  - assets/Water_Gum.jpg
+  - assets/Wheel_of_Fire.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
