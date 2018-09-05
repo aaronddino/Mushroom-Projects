@@ -17,8 +17,8 @@ class Item {
   String date;
   String image1;
   String image2;
-  dynamic longitude;
-  dynamic latitude;
+  String longitude;
+  String latitude;
   
 
 
@@ -36,7 +36,9 @@ class Item {
       this.image1,
       this.image2,
       this.date,
-      this.species);
+      this.species,
+      this.latitude,
+      this.longitude);
 
   Item.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
@@ -52,6 +54,8 @@ class Item {
         image1 = snapshot.value["image1"],
         image2 = snapshot.value["image2"],
         date = snapshot.value["date"],
+        latitude = snapshot.value["latitude"],
+        longitude = snapshot.value["longitude"],
         species = snapshot.value["species"];
 
   toJson() {
@@ -69,6 +73,8 @@ class Item {
       "Image 2": image2,
       "Date": date,
       "Species": species,
+      "Longitude": longitude,
+      "Latitude": latitude,
     };
   }
 

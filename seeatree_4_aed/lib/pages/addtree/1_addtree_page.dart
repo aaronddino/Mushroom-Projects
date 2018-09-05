@@ -18,10 +18,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:typed_data';
 import 'dart:math';
 import 'dart:async';
+import 'package:flutter/services.dart';
 //import 'package:geolocation/geolocation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
+import 'package:location/location.dart';
 
 //#2 Add Tree Page
 
@@ -37,6 +39,69 @@ class AddTreePageState extends State<AddTreePage> {
   File image2;
   String _path = "";
   String _text = "";
+   Map<String, double> _startLocation;
+  Map<String, double> _currentLocation;
+
+  StreamSubscription<Map<String, double>> _locationSubscription;
+
+  Location _location = new Location();
+  bool _permission = false;
+  String error;
+
+  bool currentWidget = true;
+
+  Image image1;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initPlatformState();
+
+    _locationSubscription =
+        _location.onLocationChanged().listen((Map<String,double> result) {
+          setState(() {
+            _currentLocation = result;
+          });
+        });
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  initPlatformState() async {
+    Map<String, double> location;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+
+    try {
+      _permission = await _location.hasPermission();
+      location = await _location.getLocation();
+
+
+      error = null;
+    } on PlatformException catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        error = 'Permission denied';
+      } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
+        error = 'Permission denied - please ask the user to enable it from the app settings';
+      }
+
+      location = null;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    //if (!mounted) return;
+
+    setState(() {
+        _startLocation = location;
+    });
+
+  }
+
+ 
+
+
+
   
 
 
@@ -54,6 +119,7 @@ class AddTreePageState extends State<AddTreePage> {
     );
     showDialog(context: context, child: dialog);
   }
+
 
   Future<Null> uploadfile(File file) async {
     //file conversion
@@ -110,6 +176,10 @@ class AddTreePageState extends State<AddTreePage> {
     }
     setState(() {});
   }
+
+   
+  
+  
   /*
   @override
   void initState() {
@@ -132,6 +202,13 @@ class AddTreePageState extends State<AddTreePage> {
 
   @override
   Widget build(BuildContext context) {
+ 
+
+
+
+  
+
+
     return new Scaffold(
       appBar: new AppBar(
           title: new Text("Add Tree"), backgroundColor: Colors.green),
@@ -216,6 +293,9 @@ class AddTreePageState extends State<AddTreePage> {
                 ],
               ),
               onPressed: () {
+                globals.item.longitude = _startLocation.toString().split("longitude:")[1].split("}")[0].trim();
+                globals.item.latitude = _startLocation.toString().split("latitude:")[1].split(",")[0].trim();
+
                 if (image != null) {
                   if (image2 != null) {
                     uploadfile2(image2);

@@ -29,6 +29,7 @@ import 'package:seeatree_4_aed/pages/addtree/12.5_species_information.dart';
 import 'package:seeatree_4_aed/pages/addtree/13_submission_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/14_submitted_page.dart';
 
+
 import 'package:seeatree_4_aed/pages/mytrees/1_my_trees_page.dart';
 import 'package:seeatree_4_aed/pages/community/1_community_page.dart';
 import 'package:seeatree_4_aed/pages/mytrees/view_map.dart';
@@ -72,6 +73,8 @@ void main(){
       "/LandmarkInfo": (BuildContext context) => new LandmarkInfoPage(),
       "/ShapeInfo": (BuildContext context) => new ShapeInfoPage(),
       "/RareInfo": (BuildContext context) => new RareInfoPage(),
+
+
     }
   ));
 }
