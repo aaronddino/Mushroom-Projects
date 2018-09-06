@@ -70,7 +70,9 @@ class SubmissionState extends State<SubmissionPage> {
           new Container(
             height: 250.0,
             child: new ListView.builder(
+              itemCount: 1,
               itemBuilder: (BuildContext context, int index) {
+               
                 return new Container(
                   child: new Column(
                     children: <Widget>[
