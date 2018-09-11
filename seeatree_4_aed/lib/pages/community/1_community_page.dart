@@ -15,6 +15,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:seeatree_4_aed/objects/itemconstructor.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:seeatree_4_aed/objects/item.dart' as globals;
 //import 'dart:async';
 
 var apiKey = "";
@@ -111,8 +112,10 @@ class CommunityTreesState extends State<CommunityTreesPage> {
               itemBuilder: (BuildContext context, DataSnapshot snapshot,
                   Animation<double> animation, int index) {
                 return new RaisedButton(
+                  color: Colors.white,
                     onPressed: () {
-                      print(items[index].key);
+                      globals.communityinfokey = items[index].key;
+                      Navigator.of(context).pushNamed("/InfoCommunity");
                     },
                     child: new ListTile(
                         title: Text("Species: " +

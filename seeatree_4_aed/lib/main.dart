@@ -32,6 +32,7 @@ import 'package:seeatree_4_aed/pages/addtree/14_submitted_page.dart';
 
 import 'package:seeatree_4_aed/pages/mytrees/1_my_trees_page.dart';
 import 'package:seeatree_4_aed/pages/community/1_community_page.dart';
+import 'package:seeatree_4_aed/pages/community/2_community_info.dart';
 import 'package:seeatree_4_aed/pages/mytrees/view_map.dart';
 import 'package:seeatree_4_aed/loginpage.dart'; 
 import 'package:seeatree_4_aed/objects/item.dart' as globals; 
@@ -52,6 +53,7 @@ void main(){
       "/AddTree": (BuildContext context) => new AddTreePage(),
       "/MyTrees": (BuildContext context) => new MyTreesPage(),
       "/Community": (BuildContext context) => new CommunityTreesPage(),
+      "/InfoCommunity": (BuildContext context) => new CommunityInfoPage(),
       "/Rules": (BuildContext context) => new RulesPage(),
       "/HealthConditions": (BuildContext context) => new HealthConditionsPage(),
       "/LandmarkStatus": (BuildContext context) => new LandmarkStatusPage(),

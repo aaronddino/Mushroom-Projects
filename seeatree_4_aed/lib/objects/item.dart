@@ -5,4 +5,5 @@ import 'package:seeatree_4_aed/objects/displayspecies.dart';
 
 Item item = Item("","","","","","","","","","","","","","","");
 Species displayspecies = Species("","","","","","","");
+String communityinfokey = "";
 
