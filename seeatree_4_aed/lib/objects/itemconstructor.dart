@@ -78,7 +78,7 @@ class Item {
     };
   }
 
- /* Item.fromJson(this.key, Map data) {
+  Item.fromJson(this.key, Map data) {
     height = data["Height"];
     if (height == null) {
       height = '';
@@ -131,5 +131,5 @@ class Item {
     if (date == null) {
       date = '';
     }
-  }*/
+  }
 }

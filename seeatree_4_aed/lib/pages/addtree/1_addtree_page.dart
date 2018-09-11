@@ -293,8 +293,8 @@ class AddTreePageState extends State<AddTreePage> {
                 ],
               ),
               onPressed: () {
-                globals.item.longitude = _startLocation.toString().split("longitude:")[1].split("}")[0].trim();
-                globals.item.latitude = _startLocation.toString().split("latitude:")[1].split(",")[0].trim();
+                globals.item.longitude = _startLocation["longitude"].toString();
+                globals.item.latitude = _startLocation["latitude"].toString();
 
                 if (image != null) {
                   if (image2 != null) {
