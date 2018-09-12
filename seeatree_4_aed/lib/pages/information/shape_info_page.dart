@@ -22,15 +22,10 @@ class ShapeInfoPage extends StatelessWidget{
       body: new Column(
         children: <Widget>[
           new Image(image: new AssetImage("assets/Shape.png"), height: 250.0, width: 300.0),
-          new Container( //Information
-            height: 350.0,
-            child: new ListView(
-              children: <Widget>[
+          
                 new Text(strangeinfo, 
                 style: new TextStyle(fontSize: 15.0, color: Colors.black)),
-              ],
-            ),
-          ),
+              
         ],
       ),
     );

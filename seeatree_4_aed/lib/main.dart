@@ -41,6 +41,10 @@ import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:seeatree_4_aed/pages/information/landmark_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/shape_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/rare_info_page.dart';
+import 'package:seeatree_4_aed/pages/information/historic_info_page.dart';
+import 'package:seeatree_4_aed/pages/information/hollow_trunk_info_page.dart';
+import 'package:seeatree_4_aed/pages/information/leaves_info_page.dart';
+import 'package:seeatree_4_aed/pages/information/wide_trunk_info_page.dart';
 
 var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
 
@@ -75,6 +79,10 @@ void main(){
       "/LandmarkInfo": (BuildContext context) => new LandmarkInfoPage(),
       "/ShapeInfo": (BuildContext context) => new ShapeInfoPage(),
       "/RareInfo": (BuildContext context) => new RareInfoPage(),
+      "/HistoricInfo": (BuildContext context) => new HistoricInfoPage(),
+      "/HollowInfo": (BuildContext context) => new HollowInfoPage(),
+      "/lackleavesInfo": (BuildContext context) => new LackLeavesInfoPage(),
+      "/wideInfo": (BuildContext context) => new WideTrunkInfoPage(),
 
 
     }

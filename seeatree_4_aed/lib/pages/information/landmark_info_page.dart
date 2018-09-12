@@ -24,8 +24,8 @@ class LandmarkInfoPage extends StatelessWidget{
       body: new Column(
         children: <Widget>[
           new Image(image: new AssetImage("assets/Landmark.png"), height: 250.0, width: 300.0),
-          new Container( //Information
-            height: 350.0,
+          new Flexible( //Information
+           
             child: new ListView(
               children: <Widget>[
                 new Text(landmarkinfo, 
@@ -33,7 +33,6 @@ class LandmarkInfoPage extends StatelessWidget{
               ],
             ),
           ),
-
         ],
       ),
     );

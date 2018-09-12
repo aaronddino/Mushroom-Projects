@@ -120,12 +120,61 @@ class CommunityInfoState extends State<CommunityInfoPage> {
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              new Icon(Icons.dvr, color: landmarkcolor, size: logosize),
-              new Icon(Icons.spa, color: botanicalcolor, size: logosize),
-              new Icon(Icons.local_florist,
-                  color: habitatcolor, size: logosize),
-              new Icon(Icons.book, color: historicalcolor, size: logosize),
-              new Icon(Icons.nature_people, color: shapecolor, size: logosize),
+              Container(
+                width: 50.0,
+                child: new RaisedButton(
+                  color: Colors.white,
+                  child:
+                      new Icon(Icons.dvr, color: landmarkcolor, size: logosize),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/LandmarkInfo");
+                  },
+                ),
+              ),
+              Container(
+                width: 50.0,
+                child: new RaisedButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/RareInfo");
+                  },
+                  child: new Icon(Icons.spa,
+                      color: botanicalcolor, size: logosize),
+                ),
+              ),
+              Container(
+                width: 50.0,
+                child: new RaisedButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    //Navigator.of(context).pushNamed("/RareInfo");
+                  },
+                  child: new Icon(Icons.local_florist,
+                      color: habitatcolor, size: logosize),
+                ),
+              ),
+              Container(
+                width: 50.0,
+                child: new RaisedButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/HistoricInfo");
+                  },
+                  child: new Icon(Icons.book,
+                      color: historicalcolor, size: logosize),
+                ),
+              ),
+              Container(
+                width: 50.0,
+                child: new RaisedButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/ShapeInfo");
+                  },
+                  child: new Icon(Icons.nature_people,
+                      color: shapecolor, size: logosize),
+                ),
+              ),
             ],
           ),
           new Text("Species: " + _species,

@@ -30,14 +30,14 @@ class RulesPage extends StatelessWidget{
                   new PictureButton(
                     image: "assets/tree2.png",
                     text: "Wide Trunk",
-                    nextpage: "/MyTrees",
+                    nextpage: "/wideInfo",
                     width: 150.0,
                     height: 50.0,
                   ),
                   new PictureButton(
                     image: "assets/tree2.png",
                     text: "Hollow Trunk",
-                    nextpage: "/MyTrees",
+                    nextpage: "/HollowInfo",
                     width: 150.0,
                     height: 50.0,
                   ),
@@ -49,7 +49,7 @@ class RulesPage extends StatelessWidget{
                   new PictureButton(
                     image: "assets/tree2.png",
                     text: "Lack of Leaves",
-                    nextpage: "/MyTrees",
+                    nextpage: "/lackleavesInfo",
                     width: 330.0,
                     height: 50.0,
                   ),
@@ -89,7 +89,7 @@ class RulesPage extends StatelessWidget{
                   new PictureButton(
                     image: "assets/Historical.png",
                     text: "Historic",
-                    nextpage: "/MyTrees",
+                    nextpage: "/HistoricInfo",
                     width: 150.0,
                     height: 50.0,
                   ),
