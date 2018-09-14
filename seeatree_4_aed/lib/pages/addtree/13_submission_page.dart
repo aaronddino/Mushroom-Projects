@@ -140,6 +140,7 @@ class SubmissionState extends State<SubmissionPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed("/Submitted");
                 globals.item.date = dateSlug;
+                globals.item.useremail = globals.useremail;
                 itemref.push().set(send.toJson());
               },
               color: Colors.green.shade600,

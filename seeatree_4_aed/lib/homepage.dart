@@ -11,6 +11,7 @@ Purpose:
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:seeatree_4_aed/objects/item.dart' as globals;
 
 //#1: Home Page of the See A Tree App
 class HomePage extends StatelessWidget{

@@ -70,7 +70,7 @@ class SubmittedPageState extends State<SubmittedPage> {
                         minWidth: 150.0,
                         height: 42.0,
                         onPressed: () {
-                          globals.item = new Item("","","","","","","","","","","","","","","");
+                          globals.item = new Item("","","","","","","","","","","","","","","","");
                           Navigator.of(context).pushNamed("/HomePage");
                         },
                         color: Colors.green.shade600,

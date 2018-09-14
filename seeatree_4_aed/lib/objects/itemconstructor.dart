@@ -19,6 +19,7 @@ class Item {
   String image2;
   String longitude;
   String latitude;
+  String useremail;
   
 
 
@@ -38,7 +39,8 @@ class Item {
       this.date,
       this.species,
       this.latitude,
-      this.longitude);
+      this.longitude,
+      this.useremail);
 
   Item.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
@@ -56,7 +58,9 @@ class Item {
         date = snapshot.value["date"],
         latitude = snapshot.value["latitude"],
         longitude = snapshot.value["longitude"],
-        species = snapshot.value["species"];
+        species = snapshot.value["species"],
+        useremail = snapshot.value["useremail"];
+
 
   toJson() {
     return {
@@ -75,6 +79,7 @@ class Item {
       "Species": species,
       "Longitude": longitude,
       "Latitude": latitude,
+      "Email" : useremail,
     };
   }
 
@@ -130,6 +135,10 @@ class Item {
     date = data["Date"];
     if (date == null) {
       date = '';
+    }
+    useremail = data["Email"];
+    if (useremail == null) {
+      useremail = '';
     }
   }
 }

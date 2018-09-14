@@ -179,34 +179,9 @@ class AddTreePageState extends State<AddTreePage> {
 
    
   
-  
-  /*
-  @override
-  void initState() {
-      // TODO: implement initState
-      super.initState();
-      checkGPS();
-    }
-
-    checkGPS() async{
-      final GeolocationResult result = await Geolocation.isLocationOperational();
-      if(result.isSuccessful){
-        print("success");
-      }else{
-        print("Failed");
-      }
-    }
-    */
-
-  
 
   @override
   Widget build(BuildContext context) {
- 
-
-
-
-  
 
 
     return new Scaffold(
