@@ -18,7 +18,24 @@ class GirthStatusPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return new Scaffold(
-      appBar: new AppBar(title: new Text("Width of the Trunk"), backgroundColor: Colors.green),
+      appBar: new AppBar(
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[

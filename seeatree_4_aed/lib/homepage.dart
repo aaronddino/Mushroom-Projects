@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget{
             PictureButton(
               image: "assets/tree1.png",
               text: "Add Tree",
-              nextpage: "/AddTree",
+              nextpage: "/Rules",
               width: 150.0,
               height: 150.0,
               ),

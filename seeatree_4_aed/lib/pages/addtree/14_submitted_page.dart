@@ -25,7 +25,23 @@ class SubmittedPageState extends State<SubmittedPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-          title: new Text("Success!"), backgroundColor: Colors.green),
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,7 +86,7 @@ class SubmittedPageState extends State<SubmittedPage> {
                         minWidth: 150.0,
                         height: 42.0,
                         onPressed: () {
-                          globals.item = new Item("","","","","","","","","","","","","","","","");
+                          globals.item = new Item("","","","","","","","","","","","","","","","","");
                           Navigator.of(context).pushNamed("/HomePage");
                         },
                         color: Colors.green.shade600,

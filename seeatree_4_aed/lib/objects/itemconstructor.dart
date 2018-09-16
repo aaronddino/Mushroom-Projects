@@ -20,6 +20,7 @@ class Item {
   String longitude;
   String latitude;
   String useremail;
+  String owneraware;
   
 
 
@@ -40,7 +41,8 @@ class Item {
       this.species,
       this.latitude,
       this.longitude,
-      this.useremail);
+      this.useremail,
+      this.owneraware);
 
   Item.fromSnapshot(DataSnapshot snapshot)
       : key = snapshot.key,
@@ -59,7 +61,8 @@ class Item {
         latitude = snapshot.value["latitude"],
         longitude = snapshot.value["longitude"],
         species = snapshot.value["species"],
-        useremail = snapshot.value["useremail"];
+        useremail = snapshot.value["useremail"],
+        owneraware = snapshot.value["owneraware"];
 
 
   toJson() {
@@ -80,6 +83,7 @@ class Item {
       "Longitude": longitude,
       "Latitude": latitude,
       "Email" : useremail,
+      "Owner_Aware" : owneraware,
     };
   }
 
@@ -139,6 +143,10 @@ class Item {
     useremail = data["Email"];
     if (useremail == null) {
       useremail = '';
+    }
+    owneraware = data["Owner_Aware"];
+    if (owneraware == null) {
+      owneraware = '';
     }
   }
 }

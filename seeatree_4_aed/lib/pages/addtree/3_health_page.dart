@@ -106,7 +106,24 @@ class HealthConditionsState extends State<HealthConditionsPage>{
     //int x = 0;
     treecondition();
     return new Scaffold(
-      appBar: new AppBar(title: new Text("Tree Health Conditions"), backgroundColor: Colors.green),
+      appBar: new AppBar(
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

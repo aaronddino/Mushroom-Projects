@@ -80,7 +80,23 @@ class CommunityTreesState extends State<CommunityTreesPage> {
     //int x = 0;
     return new Scaffold(
       appBar: new AppBar(
-          title: new Text("Community"), backgroundColor: Colors.green),
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -119,24 +135,16 @@ class CommunityTreesState extends State<CommunityTreesPage> {
                     },
                     child: new ListTile(
                         title: Text("Species: " +
-                            snapshot.value
-                                .toString()
-                                .split("Species: ")[1]
-                                .split(",")[0]),
+                            snapshot.value["Species"]),
                         leading: Container(
                           height: 50.0,
                           width: 50.0,
                           color: Colors.blueGrey,
-                          child: Image.network(snapshot.value
-                              .toString()
-                              .split(", Date")[0]
-                              .split("Image 1: ")[1]),
+                          child: Image.network(snapshot.value["Image 1"]),
                         ),
                         subtitle: Text("Date: " +
-                            snapshot.value
-                                .toString()
-                                .split("Date: ")[1]
-                                .split(",")[0])));
+                            snapshot.value["Date"]))
+                                );
               },
             ),
           ),

@@ -11,6 +11,9 @@ Purpose:
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:map_view/map_view.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:seeatree_4_aed/objects/item.dart' as globals;
+import 'package:firebase_database/firebase_database.dart';
 //import 'dart:async';
 
 var apiKey = "";
@@ -77,7 +80,24 @@ class MyTreesState extends State<MyTreesPage>{
   Widget build(BuildContext context){
     //int x = 0;
     return new Scaffold(
-      appBar: new AppBar(title: new Text("My Trees"), backgroundColor: Colors.green),
+      appBar: new AppBar(
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -102,22 +122,35 @@ class MyTreesState extends State<MyTreesPage>{
               new TextCard(text:"Most Recent", size: 15.0, box:Colors.grey[200]),
             ],
           ),
-          new Container(
-            height: 400.0,
-            child: new ListView.builder(
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index){
-                  return new Container(
-                    child: new Column(
-                      children: <Widget>[
-                        new Image(image: new AssetImage("assets/sampletree.jpg"), height: 200.0, width: 500.0),
-                        new Text("Date:"+"29/05/18", style: new TextStyle(fontSize: 12.0, color: Colors.black)),
-                        new Text("Name:"+"Sample Name", style: new TextStyle(fontSize: 12.0, color: Colors.black)),
-                      ],
-                    )
-                  );
-                }
-              ),
+          Flexible(
+            child: FirebaseAnimatedList(
+              query: FirebaseDatabase.instance.reference().child('items'),
+              itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                  Animation<double> animation, int index) {
+
+                    if(snapshot.value["Email"]== globals.useremail){
+                return new RaisedButton(
+                  color: Colors.white,
+                    onPressed: () {
+
+                    },
+                    child: new ListTile(
+                        title: Text("Species: " +
+                           snapshot.value["Species"]),
+                        leading: Container(
+                          height: 50.0,
+                          width: 50.0,
+                          color: Colors.blueGrey,
+                          child: Image.network(snapshot.value["Image 1"]),
+                        ),
+                        subtitle: Text("Date: " +
+                            snapshot.value["Date"]))
+                                );
+                  } else{
+                    return new Container(height: 0.0,);
+                  }
+              },
+            ),
           ),
         ],
       ),

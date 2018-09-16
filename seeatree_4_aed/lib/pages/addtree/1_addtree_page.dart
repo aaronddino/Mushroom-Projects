@@ -186,7 +186,23 @@ class AddTreePageState extends State<AddTreePage> {
 
     return new Scaffold(
       appBar: new AppBar(
-          title: new Text("Add Tree"), backgroundColor: Colors.green),
+            title: new Text("Permission"), 
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/poprules");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.of(context).pushNamed("/HomePage");
+                },
+              ),
+            ],
+            backgroundColor: Colors.green,
+            ),
       body: new Container(
           child: new Center(
               child: new Column(
@@ -279,7 +295,7 @@ class AddTreePageState extends State<AddTreePage> {
 
                   
                   
-                  Navigator.of(context).pushNamed("/Rules");
+                  Navigator.of(context).pushNamed("/Permission");
                 }else{
                   _showAlert("Please take or select a photo!");
                 }

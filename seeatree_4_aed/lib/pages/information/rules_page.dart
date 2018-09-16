@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
 
 //#2.1 Rules Page
-class RulesPage extends StatelessWidget{
+class POPRulesPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -22,7 +22,7 @@ class RulesPage extends StatelessWidget{
               IconButton(
                 icon: Icon(Icons.info_outline),
                 onPressed: (){
-                  Navigator.of(context).pushNamed("/poprules");
+                  Navigator.of(context).pushNamed("/Rules");
                 },
               ),
               IconButton(
@@ -118,10 +118,10 @@ class RulesPage extends StatelessWidget{
                 color: Colors.white,
                 child: new Column(
                   children: <Widget>[
-                    new Text("Next"),
+                    new Text("Okay"),
                   ],
                 ),
-                onPressed: () {Navigator.of(context).pushNamed("/AddTree");},
+                onPressed: () {Navigator.pop(context);},
               ),
               new Text("Mushroom Projects 2018 ©", style: new TextStyle(fontSize: 8.0), textAlign: TextAlign.center,),
             ]

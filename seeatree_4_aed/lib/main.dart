@@ -13,6 +13,7 @@ import 'package:map_view/map_view.dart';
 
 import 'package:seeatree_4_aed/widgets.dart';
 import 'package:seeatree_4_aed/homepage.dart';
+import 'package:seeatree_4_aed/pages/addtree/0_permission_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/1_addtree_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/2_rules_page.dart';
 import 'package:seeatree_4_aed/pages/addtree/3_health_page.dart';
@@ -45,6 +46,7 @@ import 'package:seeatree_4_aed/pages/information/historic_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/hollow_trunk_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/leaves_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/wide_trunk_info_page.dart';
+import 'package:seeatree_4_aed/pages/information/rules_page.dart';
 
 var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
 
@@ -69,7 +71,9 @@ void main(){
       "/ShapeStatus": (BuildContext context) => new ShapeStatusPage(),
       "/HabitatStatus": (BuildContext context) => new HabitatStatusPage(),
       "/Species": (BuildContext context) => new SpeciesPage(),
+      "/Permission": (BuildContext context) => new PermissionPage(),
       "/ViewMap": (BuildContext context) => new ViewMapPage(),
+      "/poprules": (BuildContext context) => new POPRulesPage(),
 
       "/Submission": (BuildContext context) => new SubmissionPage(),
       "/Submitted": (BuildContext context) => new SubmittedPage(),
