@@ -16,6 +16,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:seeatree_4_aed/objects/itemconstructor.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals;
+import 'package:seeatree_4_aed/objects/Firebase.dart';
 //import 'dart:async';
 
 var apiKey = "";
@@ -33,6 +34,8 @@ class CommunityTreesState extends State<CommunityTreesPage> {
   CameraPosition cameraPosition;
   var staticMapProvider = new StaticMapProvider(apiKey);
   Uri staticMapUri;
+  String test = "";
+  
 
   showMap() {
     mapView.show(new MapOptions(
@@ -58,29 +61,38 @@ class CommunityTreesState extends State<CommunityTreesPage> {
     itemRef = database.reference().child('items');
     itemRef.onChildAdded.listen(_onEntryAdded);
     itemRef.onChildChanged.listen(_onEntryChanged);
+
+    
   }
 
   _onEntryAdded(Event event) {
     setState(() {
       items.add(Item.fromSnapshot(event.snapshot));
+      
     });
   }
 
+
   _onEntryChanged(Event event) {
+  
     var old = items.singleWhere((entry) {
       return entry.key == event.snapshot.key;
     });
     setState(() {
       items[items.indexOf(old)] = Item.fromSnapshot(event.snapshot);
     });
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    print(items[4].species);
+  
+    
     //int x = 0;
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Community"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

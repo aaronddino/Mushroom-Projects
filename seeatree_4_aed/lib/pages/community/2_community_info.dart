@@ -42,7 +42,9 @@ class CommunityInfoState extends State<CommunityInfoPage> {
   @override
   void initState() {
     FirebaseTodos.getTodo(globals.communityinfokey).then(_updatetodo);
+    
     super.initState();
+    
   }
 
   _updatetodo(Item value) {
@@ -81,14 +83,17 @@ class CommunityInfoState extends State<CommunityInfoPage> {
       if (grabshape == "Yes") {
         shapecolor = Colors.green;
       }
-    });
+    }
+    
+    );
+
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Information"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),
