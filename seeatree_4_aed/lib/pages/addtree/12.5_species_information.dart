@@ -14,7 +14,7 @@ class SpeciesinformationPageState extends State<SpeciesinformationPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text(globals.displayspecies.commoname), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

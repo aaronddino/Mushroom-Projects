@@ -73,29 +73,25 @@ class HealthConditionsState extends State<HealthConditionsPage>{
          currentcondition = conditions[0];
          conditioncolor = Colors.green[300];
       }
-      else if (x==1){
+      else if (x==3 || x==1|| x==2){
         currentcondition = conditions[1];
         conditioncolor = Colors.green[200];
       }
-      else if (x==2){
+      else if (x==4||x==5||x==6){
       currentcondition = conditions[2];
       conditioncolor = Colors.green[100];
       }
-      else if (x==3){
+      else if (x==7||x==8){
       currentcondition = conditions[3];
       conditioncolor = Colors.lightGreen[300];
       }
-      else if (x==4){
+      else if (x==9||x==10){
       currentcondition = conditions[4];
       conditioncolor = Colors.lightGreen[200];
       }
-      else if (x==5){
+      else{
       currentcondition = conditions[5];
       conditioncolor = Colors.lightGreen[100];
-      }
-      else{
-      currentcondition = conditions[6];
-      conditioncolor = Colors.brown[300];
       }
     }
   }
@@ -107,7 +103,7 @@ class HealthConditionsState extends State<HealthConditionsPage>{
     treecondition();
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Health"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

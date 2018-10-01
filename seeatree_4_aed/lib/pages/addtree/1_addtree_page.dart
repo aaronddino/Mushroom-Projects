@@ -186,7 +186,7 @@ class AddTreePageState extends State<AddTreePage> {
 
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Photo"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

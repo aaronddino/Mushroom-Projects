@@ -87,6 +87,7 @@ void main(){
       "/HollowInfo": (BuildContext context) => new HollowInfoPage(),
       "/lackleavesInfo": (BuildContext context) => new LackLeavesInfoPage(),
       "/wideInfo": (BuildContext context) => new WideTrunkInfoPage(),
+      "/speciesextend": (BuildContext context) => new SpeciesextendPage(),
 
 
     }

@@ -72,7 +72,7 @@ class RulesPage extends StatelessWidget{
                   ),
                 ],
               ),
-              new Text("OR", style: new TextStyle(fontSize: 12.0), textAlign: TextAlign.center,),
+              new Text("OR", style: new TextStyle(fontSize: 30.0), textAlign: TextAlign.center,),
               new TextCard(text:"Significant", size: 12.0, box:Colors.grey[200]),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

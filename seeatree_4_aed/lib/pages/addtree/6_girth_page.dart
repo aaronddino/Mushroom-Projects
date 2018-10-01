@@ -19,7 +19,7 @@ class GirthStatusPage extends StatelessWidget{
   Widget build(BuildContext context){
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Girth"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

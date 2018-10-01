@@ -46,7 +46,7 @@ class SubmissionState extends State<SubmissionPage> {
         "${today.day.toString()}-${today.month.toString().padLeft(2,'0')}-${today.year.toString().padLeft(2,'0')}";
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Submission"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

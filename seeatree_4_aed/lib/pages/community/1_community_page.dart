@@ -92,7 +92,7 @@ class CommunityTreesState extends State<CommunityTreesPage> {
     //int x = 0;
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Community"), 
+            title: new Text("Everyones Trees"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

@@ -19,7 +19,7 @@ class HistoricalStatusPage extends StatelessWidget{
   Widget build(BuildContext context){
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Historical"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),
@@ -57,48 +57,53 @@ class HistoricalStatusPage extends StatelessWidget{
               
             ],
           ),
-          new Row(
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-                new RaisedButton(
-                  color: Colors.lightGreenAccent,
-                  child: new Column(
-                    children: <Widget>[
-                      new Text("Yes"),
-                    ],
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
+              child: new Row(
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  new RaisedButton(
+                    color: Colors.lightGreenAccent,
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("Yes"),
+                      ],
+                    ),
+                    onPressed: () {
+                      globals.item.historical  = "Yes";
+                      Navigator.of(context).pushNamed("/ShapeStatus");
+                    },
                   ),
-                  onPressed: () {
-                    globals.item.historical = "Yes";
-                    Navigator.of(context).pushNamed("/ShapeStatus");
-                  },
-                ),
-                new RaisedButton(
-                  color: Colors.redAccent,
-                  child: new Column(
-                    children: <Widget>[
-                      new Text("No"),
-                    ],
+                  Container(
+                    width: 150.0,
+                  child: new RaisedButton(
+                    color: Colors.orange,
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("I'm not sure"),
+                      ],
+                    ),
+                    onPressed: () {
+                      globals.item.historical  = "n/a";
+                      Navigator.of(context).pushNamed("/ShapeStatus");
+                    },
+                  ),),
+                  new RaisedButton(
+                    color: Colors.redAccent,
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("No"),
+                      ],
+                    ),
+                    onPressed: () {
+                      globals.item.historical  = "No";
+                      Navigator.of(context).pushNamed("/ShapeStatus");
+                    },
                   ),
-                  onPressed: () {
-                    globals.item.historical = "No";
-                    Navigator.of(context).pushNamed("/ShapeStatus");
-                  },
-                ),
-            ],
-          ),
-          new RaisedButton(
-                color: Colors.white,
-                child: new Column(
-                  children: <Widget>[
-                    new Text("I'm not sure"),
-                  ],
-                ),
-                onPressed: () {
-                  globals.item.historical = "n/a";
-                  Navigator.of(context).pushNamed("/ShapeStatus");
-                },
+                ],
               ),
+            ),
       ],)
     );
   }

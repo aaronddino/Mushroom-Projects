@@ -20,7 +20,7 @@ class LandmarkStatusPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("Landmark"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),
@@ -85,7 +85,9 @@ class LandmarkStatusPage extends StatelessWidget {
                       text: "Photogenic", size: 12.0, box: Colors.grey[200]),
                 ],
               ),
-              new Row(
+              Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
+              child: new Row(
                 //crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -101,9 +103,22 @@ class LandmarkStatusPage extends StatelessWidget {
                       Navigator.of(context).pushNamed("/SizeStatus");
                     },
                   ),
+                  Container(
+                    width: 150.0,
+                  child: new RaisedButton(
+                    color: Colors.orange,
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("I'm not sure"),
+                      ],
+                    ),
+                    onPressed: () {
+                      globals.item.landmark = "n/a";
+                      Navigator.of(context).pushNamed("/SizeStatus");
+                    },
+                  ),),
                   new RaisedButton(
-
-                    color: Colors.red,
+                    color: Colors.redAccent,
                     child: new Column(
                       children: <Widget>[
                         new Text("No"),
@@ -116,18 +131,7 @@ class LandmarkStatusPage extends StatelessWidget {
                   ),
                 ],
               ),
-              new RaisedButton(
-                color: Colors.white,
-                child: new Column(
-                  children: <Widget>[
-                    new Text("I'm not sure"),
-                  ],
-                ),
-                onPressed: () {
-                  globals.item.landmark = "n/a";
-                  Navigator.of(context).pushNamed("/SizeStatus");
-                },
-              ),
+            ),
             ])));
   }
 }

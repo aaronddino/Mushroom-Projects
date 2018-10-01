@@ -81,7 +81,7 @@ class MyTreesState extends State<MyTreesPage>{
     //int x = 0;
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Permission"), 
+            title: new Text("My Trees"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),

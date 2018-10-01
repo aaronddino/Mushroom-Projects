@@ -116,7 +116,7 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 PictureButton(
                   image: "assets/tree3.png",
-                  text: "Community",
+                  text: "Everyones Tree",
                   nextpage: "/Community",
                   width: 330.0,
                   height: 150.0,
