@@ -42,6 +42,7 @@ class HomePageState extends State<HomePage> {
       
     });
      globals.allitems.clear();
+     globals.myitems.clear();
       FirebaseTodos.getTodo(items[items.length-1].key).then(_updatetodo); 
   }
 
@@ -69,6 +70,9 @@ class HomePageState extends State<HomePage> {
 
     setState(() {
       globals.allitems.add(new Item(grabhealth, grablandmark, grabheight, grabgirth,grabcanopy,grabbotanical,grabhistorical,grabshape,grabhabitat,grabimage1,grabimage2,grabdate,grabspecies,grablatitude,grablongitude,grabuseremail,grabowneraware));
+      if(grabuseremail == globals.useremail){
+        globals.myitems.add(new Item(grabhealth, grablandmark, grabheight, grabgirth,grabcanopy,grabbotanical,grabhistorical,grabshape,grabhabitat,grabimage1,grabimage2,grabdate,grabspecies,grablatitude,grablongitude,grabuseremail,grabowneraware));
+      }
       index++;
     }
     
@@ -80,6 +84,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return new Scaffold(
         appBar: new AppBar(
             title: new Text("See A Tree",

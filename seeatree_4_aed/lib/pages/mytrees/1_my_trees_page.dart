@@ -78,6 +78,7 @@ class MyTreesState extends State<MyTreesPage>{
 
   @override
   Widget build(BuildContext context){
+ 
     //int x = 0;
     return new Scaffold(
       appBar: new AppBar(
@@ -149,6 +150,7 @@ class MyTreesState extends State<MyTreesPage>{
                   } else{
                     return new Container(height: 0.0,);
                   }
+                  
               },
             ),
           ),

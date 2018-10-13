@@ -8,4 +8,5 @@ Species displayspecies = Species("","","","","","","");
 String communityinfokey = "";
 String useremail = "";
 List<Item> allitems = List();
+List<Item> myitems = List();
 
