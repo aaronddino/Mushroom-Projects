@@ -197,7 +197,7 @@ class AddTreePageState extends State<AddTreePage> {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: (){
-                  Navigator.of(context).pushNamed("/HomePage");
+                  Navigator.of(context).pushNamed("/");
                 },
               ),
             ],
@@ -289,6 +289,7 @@ class AddTreePageState extends State<AddTreePage> {
 
                 if (image != null) {
                   if (image2 != null) {
+
                     uploadfile2(image2);
                   }
                   uploadfile(image);

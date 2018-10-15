@@ -35,7 +35,9 @@ import 'package:seeatree_4_aed/pages/mytrees/1_my_trees_page.dart';
 import 'package:seeatree_4_aed/pages/community/1_community_page.dart';
 import 'package:seeatree_4_aed/pages/community/2_community_info.dart';
 import 'package:seeatree_4_aed/pages/mytrees/view_map.dart';
-import 'package:seeatree_4_aed/loginpage.dart'; 
+import 'package:seeatree_4_aed/loginpage.dart';
+import 'package:seeatree_4_aed/auth.dart';
+import 'package:seeatree_4_aed/rootpage.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals; 
 
 //info_pages
@@ -48,12 +50,15 @@ import 'package:seeatree_4_aed/pages/information/leaves_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/wide_trunk_info_page.dart';
 import 'package:seeatree_4_aed/pages/information/rules_page.dart';
 
+//Settings
+import 'package:seeatree_4_aed/pages/settings/privacy_policy.dart';
+
 var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
 
 void main(){
   MapView.setApiKey(apiKey);
   runApp(new MaterialApp(
-    home: new LoginPage(),
+    home: new RootPage(auth: new Auth()),
     routes: <String, WidgetBuilder>{
       "/HomePage": (BuildContext context) => new HomePage(),
       "/AddTree": (BuildContext context) => new AddTreePage(),
@@ -88,7 +93,7 @@ void main(){
       "/lackleavesInfo": (BuildContext context) => new LackLeavesInfoPage(),
       "/wideInfo": (BuildContext context) => new WideTrunkInfoPage(),
       "/speciesextend": (BuildContext context) => new SpeciesextendPage(),
-
+      "/PrivacyPolicy": (BuildContext context) => new PrivacyPolicy(),
 
     }
   ));

@@ -10,24 +10,48 @@ Purpose:
 
 import 'package:flutter/material.dart';
 import 'package:seeatree_4_aed/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:seeatree_4_aed/objects/itemconstructor.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:seeatree_4_aed/objects/Firebase.dart';
+import 'package:seeatree_4_aed/auth.dart';
+import 'package:seeatree_4_aed/objects/constants.dart';
+
 
 //#1: Home Page of the See A Tree App
 class HomePage extends StatefulWidget {
+  HomePage({this.auth, this.onSignedOut});
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  
+
+void signOut() async{
+    try{
+      await auth.signOut();
+      onSignedOut();
+      
+    }catch(e){
+      print(e);
+    }
+  }
+  
+
   @override
   HomePageState createState() => new HomePageState();
 }
 
+
+
 class HomePageState extends State<HomePage> {
+   // String pressedOption = 'nothingClicked';
+
+  
     DatabaseReference itemRef;
     List<Item> items = List();
      int index = 0;
 
-   @override
+
+  @override
   void initState() {
     super.initState();
     final FirebaseDatabase database = FirebaseDatabase
@@ -76,16 +100,53 @@ class HomePageState extends State<HomePage> {
 
   }
 
-
+  void choiceAction(String choice){
+    if(choice == Constants.Logout){
+      print('logout presdsed');
+      widget.signOut();
+    }else if(choice == Constants.Home){
+      Navigator.of(context).pushNamed("/");
+      print('home pressed');
+    }else if(choice == Constants.PrivacyPolicy){
+      Navigator.of(context).pushNamed("/PrivacyPolicy");
+      print('privacy pressed');
+   }
+  }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
+          
+           actions: <Widget>[
+             PopupMenuButton<String>(
+               onSelected: choiceAction,
+               itemBuilder:(BuildContext context){
+                 return Constants.choices.map((String choice){
+                   return PopupMenuItem<String>(
+                     value: choice,
+                     child: Text(choice),
+                     );
+                 }).toList();
+               },
+             )
+           ],
+            /*
+              new FlatButton(
+                child: new Text('Logout', style: new TextStyle(fontSize: 11.0)),
+                onPressed: () => widget.signOut()
+              )
+            ],
+            */
+           
             title: new Text("See A Tree",
                 style: new TextStyle(fontSize: 40.0),
                 textAlign: TextAlign.center),
-            backgroundColor: Colors.green),
+            backgroundColor: Colors.green
+           
+            ),
+
+
         body: new Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,6 +168,7 @@ class HomePageState extends State<HomePage> {
                   nextpage: "/MyTrees",
                   width: 150.0,
                   height: 150.0,
+                
                 ),
               ],
             ),
@@ -125,5 +187,6 @@ class HomePageState extends State<HomePage> {
             ),
           ],
         ));
-  }
+    }
+  
 }
