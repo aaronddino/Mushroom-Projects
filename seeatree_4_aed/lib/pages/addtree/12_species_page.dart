@@ -36,7 +36,7 @@ class SpeciesPageState extends State<SpeciesPage> {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                Navigator.of(context).pushNamed("/HomePage");
+                Navigator.of(context).pushNamed("/");
               },
             ),
           ],
@@ -669,7 +669,7 @@ class SpeciesextendPageState extends State<SpeciesextendPage> {
           IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
-              Navigator.of(context).pushNamed("/HomePage");
+              Navigator.of(context).pushNamed("/");
             },
           ),
         ],

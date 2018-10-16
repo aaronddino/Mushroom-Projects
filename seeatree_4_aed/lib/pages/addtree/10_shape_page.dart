@@ -30,7 +30,7 @@ class ShapeStatusPage extends StatelessWidget{
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: (){
-                  Navigator.of(context).pushNamed("/HomePage");
+                  Navigator.of(context).pushNamed("/");
                 },
               ),
             ],

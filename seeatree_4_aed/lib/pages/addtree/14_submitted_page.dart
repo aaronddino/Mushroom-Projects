@@ -36,7 +36,7 @@ class SubmittedPageState extends State<SubmittedPage> {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: (){
-                  Navigator.of(context).pushNamed("/HomePage");
+                  Navigator.of(context).pushNamed("/");
                 },
               ),
             ],
@@ -87,7 +87,7 @@ class SubmittedPageState extends State<SubmittedPage> {
                         height: 42.0,
                         onPressed: () {
                           globals.item = new Item("","","","","","","","","","","","","","","","","");
-                          Navigator.of(context).pushNamed("/HomePage");
+                          Navigator.of(context).pushNamed("/");
                         },
                         color: Colors.green.shade600,
                         child: Text('Homepage',

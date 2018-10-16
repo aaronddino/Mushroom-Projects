@@ -103,7 +103,7 @@ class CommunityTreesState extends State<CommunityTreesPage> {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: (){
-                  Navigator.of(context).pushNamed("/HomePage");
+                  Navigator.of(context).pushNamed("/");
                 },
               ),
             ],
