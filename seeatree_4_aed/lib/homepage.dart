@@ -15,9 +15,24 @@ import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:seeatree_4_aed/objects/itemconstructor.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:seeatree_4_aed/objects/Firebase.dart';
+import 'package:seeatree_4_aed/auth.dart';
+import 'package:seeatree_4_aed/objects/constants.dart';
 
 //#1: Home Page of the See A Tree App
 class HomePage extends StatefulWidget {
+  HomePage({this.auth, this.onSignedOut});
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+
+  void signOut() async{
+    try{
+      await auth.signOut();
+      onSignedOut();
+      
+    }catch(e){
+      print(e);
+    }
+  }
   @override
   HomePageState createState() => new HomePageState();
 }
@@ -80,17 +95,47 @@ class HomePageState extends State<HomePage> {
 
   }
 
-
+  
+  void choiceAction(String choice){
+    if(choice == Constants.Logout){
+      print('logout presdsed');
+      widget.signOut();
+      Navigator.of(context).pushNamed("/");
+    }else if(choice == Constants.Home){
+      Navigator.of(context).pushNamed("/");
+      print('home pressed');
+    }else if(choice == Constants.PrivacyPolicy){
+      Navigator.of(context).pushNamed("/PrivacyPolicy");
+      print('privacy pressed');
+   }
+  }
 
   @override
   Widget build(BuildContext context) {
     
     return new Scaffold(
         appBar: new AppBar(
+          actions: <Widget>[
+             PopupMenuButton<String>(
+               onSelected: choiceAction,
+               itemBuilder:(BuildContext context){
+                 return Constants.choices.map((String choice){
+                   return PopupMenuItem<String>(
+                     value: choice,
+                     child: Text(choice),
+                     );
+                 }).toList();
+               },
+             )
+           ],
+
+
+
+
             title: new Text("See A Tree",
                 style: new TextStyle(fontSize: 40.0),
                 textAlign: TextAlign.center),
-            backgroundColor: Colors.green),
+            backgroundColor: Colors.green),  
         body: new Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals;
+import 'auth.dart';
 
 enum FormType{
   login,
@@ -20,6 +21,10 @@ enum FormType{
 }
 
 class LoginPage extends StatefulWidget {
+  LoginPage({this.auth, this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
+
   static String tag = 'login-page';
   @override
   _LoginPageState createState() => new _LoginPageState();
@@ -48,16 +53,16 @@ class _LoginPageState extends State<LoginPage> {
     if(validateAndSave()){
       try{
         if(_formType == FormType.login){
-          FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-        print('SIgned in: ${user.uid}');
+          String userId = await widget.auth.signInWithEmailAndPassword(_email,_password);
+        print('SIgned in: $userId');
         //inserthere
         globals.useremail = _email;
-        Navigator.of(context).pushNamed("/HomePage");
+      
         }else{
-          FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
-          print('Registered USER: ${user.uid}');
-          Navigator.of(context).pushNamed("/LoginPage");
+          String userId = await widget.auth.createUserWithEmailAndPassword(_email,_password);
+          print('Registered USER: $userId');
         }
+         widget.onSignedIn(); // ensure rootpage can receive a message from login page
       }catch(e){
         print('Error: $e');
       }
