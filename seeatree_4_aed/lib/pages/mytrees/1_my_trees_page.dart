@@ -45,7 +45,7 @@ class MyTreesState extends State<MyTreesPage>{
         width: 100.0, //New width for the asset
         height: 100.0, // New height for the asset
     )), 
-    new Marker("2", "Some Place", -27.339524, 153.039460, color: Colors.green[200], 
+    new Marker("2", globals.myitems[1].species, -27.339524, 153.039460, color: Colors.green[200], 
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
     new Marker("3", "Some Place", -27.341278, 153.039535, color: Colors.green[200], 
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
@@ -60,7 +60,6 @@ class MyTreesState extends State<MyTreesPage>{
     }
     //markers.add(x);
   }
-
   Marker x = new Marker("1", "Home", -27.340060, 153.038300,
     color: Colors.green[200], markerIcon: new MarkerIcon(
         "assets/tree1.png", //Asset to be used as icon
