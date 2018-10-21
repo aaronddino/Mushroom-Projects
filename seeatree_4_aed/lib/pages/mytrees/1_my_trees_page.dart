@@ -16,7 +16,8 @@ import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:firebase_database/firebase_database.dart';
 //import 'dart:async';
 
-var apiKey = "";
+var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
+
 
 class MyTreesPage extends StatefulWidget{
   @override
@@ -28,20 +29,30 @@ class MyTreesState extends State<MyTreesPage>{
   CameraPosition cameraPosition;
   var staticMapProvider = new StaticMapProvider(apiKey);
   Uri staticMapUri;
-
+ 
   List<Marker> markers = <Marker>[
-    new Marker("1", "Home", -27.340060, 153.038300,
+    /*new Marker("1", globals.myitems[0].species, -27.340060, 153.038300,
     color: Colors.green[200], markerIcon: new MarkerIcon(
         "assets/tree1.png", //Asset to be used as icon
         width: 100.0, //New width for the asset
         height: 100.0, // New height for the asset
     )), 
-    new Marker("2", "Some Place", -27.339524, 153.039460, color: Colors.green[200], 
+    new Marker("2", globals.myitems[1].species, -27.339524, 153.039460, color: Colors.green[200], 
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
     new Marker("3", "Some Place", -27.341278, 153.039535, color: Colors.green[200], 
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
+    //new Marker("4", "Some Place", globals.myitems[0].latitude), double.parse(globals.myitems[0].longitude), color: Colors.green[200], 
+    //markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),*/
+
+    //This should work if Alice McKellar's code wasn't broken.
   ];
 
+  void makemarkers(List<Marker> markers){
+    for(int i = 0; i < 4; i++){ //will crash if length is less than specified. Need size of myitems
+      markers.add(new Marker(i.toString(), globals.myitems[i].species, double.parse(globals.myitems[i].latitude), double.parse(globals.myitems[i].longitude), 
+      markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)));
+    }
+  }
   Marker x = new Marker("1", "Home", -27.340060, 153.038300,
     color: Colors.green[200], markerIcon: new MarkerIcon(
         "assets/tree1.png", //Asset to be used as icon
@@ -78,8 +89,7 @@ class MyTreesState extends State<MyTreesPage>{
 
   @override
   Widget build(BuildContext context){
- 
-    //int x = 0;
+    makemarkers(markers);
     return new Scaffold(
       appBar: new AppBar(
             title: new Text("My Trees"), 
@@ -108,11 +118,12 @@ class MyTreesState extends State<MyTreesPage>{
               children: <Widget>[
                 new InkWell(
                   child: new Center(
-                    child:new Image.network(staticMapUri.toString()),
+                    child:new Image.asset("assets/tree1.png")
                   ),
                   onTap: showMap,
               ),
               new Text("View Map"),
+              new Text("Alice's coding skills level:"+globals.allitems[0].health),
               ],
             ),
           ),

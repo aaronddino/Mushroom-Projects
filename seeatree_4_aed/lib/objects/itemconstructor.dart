@@ -92,6 +92,14 @@ class Item {
     if (height == null) {
       height = '';
     }
+    longitude = data["Longitude"];
+    if(longitude == null){
+      longitude = '';
+    }
+    latitude = data["Latitude"];
+    if(latitude == null){
+      latitude = '';
+    }
     health = data["Health"];
     if (health == null) {
       health = '';
