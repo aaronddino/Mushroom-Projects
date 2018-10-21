@@ -16,7 +16,8 @@ import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:firebase_database/firebase_database.dart';
 //import 'dart:async';
 
-var apiKey = "";
+var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
+
 
 class MyTreesPage extends StatefulWidget{
   @override
@@ -28,10 +29,18 @@ class MyTreesState extends State<MyTreesPage>{
   CameraPosition cameraPosition;
   var staticMapProvider = new StaticMapProvider(apiKey);
   Uri staticMapUri;
-
+ 
   List<Marker> markers = <Marker>[
-    new Marker("1", "Home", -27.340060, 153.038300,
+    
+    /*new Marker("1", "mr test tree", -27.340060, 153.038300,
     color: Colors.green[200], markerIcon: new MarkerIcon(
+        "assets/tree1.png", //Asset to be used as icon
+        width: 100.0, //New width for the asset
+        height: 100.0, // New height for the asset
+    )),*/
+    /*
+    new Marker("1", "Home", -27.340060, 153.038300,
+    markerIcon: new MarkerIcon(
         "assets/tree1.png", //Asset to be used as icon
         width: 100.0, //New width for the asset
         height: 100.0, // New height for the asset
@@ -40,7 +49,17 @@ class MyTreesState extends State<MyTreesPage>{
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
     new Marker("3", "Some Place", -27.341278, 153.039535, color: Colors.green[200], 
     markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)),
+    //This should work if Alice McKellar's code wasn't broken.
+  */
   ];
+  
+  void makemarkers(List<Marker> markers){
+    for(int i = 0; i < globals.myitems.length; i++){ //will crash if length is less than specified. Need size of myitems
+      markers.add(new Marker(i.toString(), globals.myitems[i].species, double.parse(globals.myitems[i].latitude), double.parse(globals.myitems[i].longitude), 
+      markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)));
+    }
+    //markers.add(x);
+  }
 
   Marker x = new Marker("1", "Home", -27.340060, 153.038300,
     color: Colors.green[200], markerIcon: new MarkerIcon(
@@ -53,7 +72,7 @@ class MyTreesState extends State<MyTreesPage>{
     mapView.show(
       new MapOptions(
         mapViewType: MapViewType.normal,
-        initialCameraPosition: new CameraPosition(new Location(-27.340060, 153.038300), 15.0),
+        initialCameraPosition: new CameraPosition(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), 15.0),
         showUserLocation: true,
         title: "My Tree Locations",
       )
@@ -72,14 +91,13 @@ class MyTreesState extends State<MyTreesPage>{
   @override
   void initState(){
     super.initState();
-    cameraPosition = new CameraPosition(new Location(/*latitude*/-27.340060, /*longitude*/153.038300), /*zoom*/2.0);
-    staticMapUri = staticMapProvider.getStaticUri(new Location(-27.340060,153.038300), 12, height: 100, width: 400, mapType: StaticMapViewType.roadmap);
+    cameraPosition = new CameraPosition(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), /*zoom*/2.0);
+    staticMapUri = staticMapProvider.getStaticUri(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), 12, height: 100, width: 400, mapType: StaticMapViewType.roadmap);
   }
 
   @override
   Widget build(BuildContext context){
- 
-    //int x = 0;
+    makemarkers(markers);
     return new Scaffold(
       appBar: new AppBar(
             title: new Text("My Trees"), 
@@ -108,11 +126,14 @@ class MyTreesState extends State<MyTreesPage>{
               children: <Widget>[
                 new InkWell(
                   child: new Center(
-                    child:new Image.network(staticMapUri.toString()),
+                    child:new Image.asset("assets/tree1.png")
                   ),
                   onTap: showMap,
               ),
               new Text("View Map"),
+              new Text("Alice's coding skills level:"+globals.allitems[0].health),
+              new Text(globals.allitems[0].latitude),
+              new Text(globals.allitems[0].longitude),
               ],
             ),
           ),

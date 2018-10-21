@@ -17,6 +17,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:seeatree_4_aed/objects/Firebase.dart';
 import 'package:seeatree_4_aed/auth.dart';
 import 'package:seeatree_4_aed/objects/constants.dart';
+import 'package:location/location.dart';
+import 'package:flutter/services.dart';
+import 'dart:async';
 
 //#1: Home Page of the See A Tree App
 class HomePage extends StatefulWidget {
@@ -24,46 +27,88 @@ class HomePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
-  void signOut() async{
-    try{
+  void signOut() async {
+    try {
       await auth.signOut();
       onSignedOut();
-      
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
+
   @override
   HomePageState createState() => new HomePageState();
 }
 
 class HomePageState extends State<HomePage> {
-    DatabaseReference itemRef;
-    List<Item> items = List();
-     int index = 0;
+  DatabaseReference itemRef;
+  Map<String, double> _startLocation;
+  Map<String, double> _currentLocation;
+  List<Item> items = List();
+  int index = 0;
+  bool _permission = false;
+  String error;
+  StreamSubscription<Map<String, double>> _locationSubscription;
 
-   @override
+  Location _location = new Location();
+
+  @override
   void initState() {
     super.initState();
+    initPlatformState();
+
+    _locationSubscription =
+        _location.onLocationChanged().listen((Map<String, double> result) {
+      setState(() {
+        _currentLocation = result;
+      });
+    });
     final FirebaseDatabase database = FirebaseDatabase
         .instance; //Rather then just writing FirebaseDatabase(), get the instance.
     itemRef = database.reference().child('items');
     itemRef.onChildAdded.listen(_onEntryAdded);
   }
 
+  initPlatformState() async {
+    Map<String, double> location;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+
+    try {
+      _permission = await _location.hasPermission();
+      location = await _location.getLocation();
+
+      error = null;
+    } on PlatformException catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        error = 'Permission denied';
+      } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
+        error =
+            'Permission denied - please ask the user to enable it from the app settings';
+      }
+
+      location = null;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    //if (!mounted) return;
+
+    setState(() {
+      _startLocation = location;
+    });
+  }
+
   _onEntryAdded(Event event) {
     setState(() {
       items.add(Item.fromSnapshot(event.snapshot));
-      
     });
-     globals.allitems.clear();
-     globals.myitems.clear();
-      FirebaseTodos.getTodo(items[items.length-1].key).then(_updatetodo); 
+    globals.allitems.clear();
+    globals.myitems.clear();
+    FirebaseTodos.getTodo(items[items.length - 1].key).then(_updatetodo);
   }
 
-   _updatetodo(Item value) {
-
-   
+  _updatetodo(Item value) {
     var grabhealth = value.health;
     var grabgirth = value.girth;
     var grabdate = value.date;
@@ -84,58 +129,85 @@ class HomePageState extends State<HomePage> {
     var grabhistorical = value.historical;
 
     setState(() {
-      globals.allitems.add(new Item(grabhealth, grablandmark, grabheight, grabgirth,grabcanopy,grabbotanical,grabhistorical,grabshape,grabhabitat,grabimage1,grabimage2,grabdate,grabspecies,grablatitude,grablongitude,grabuseremail,grabowneraware));
-      if(grabuseremail == globals.useremail){
-        globals.myitems.add(new Item(grabhealth, grablandmark, grabheight, grabgirth,grabcanopy,grabbotanical,grabhistorical,grabshape,grabhabitat,grabimage1,grabimage2,grabdate,grabspecies,grablatitude,grablongitude,grabuseremail,grabowneraware));
+      globals.allitems.add(new Item(
+          grabhealth,
+          grablandmark,
+          grabheight,
+          grabgirth,
+          grabcanopy,
+          grabbotanical,
+          grabhistorical,
+          grabshape,
+          grabhabitat,
+          grabimage1,
+          grabimage2,
+          grabdate,
+          grabspecies,
+          grablatitude,
+          grablongitude,
+          grabuseremail,
+          grabowneraware));
+      if (grabuseremail == globals.useremail) {
+        globals.myitems.add(new Item(
+            grabhealth,
+            grablandmark,
+            grabheight,
+            grabgirth,
+            grabcanopy,
+            grabbotanical,
+            grabhistorical,
+            grabshape,
+            grabhabitat,
+            grabimage1,
+            grabimage2,
+            grabdate,
+            grabspecies,
+            grablatitude,
+            grablongitude,
+            grabuseremail,
+            grabowneraware));
       }
+      globals.amount_items_all = globals.allitems.length;
+      globals.amount_items_mytrees = globals.myitems.length;
       index++;
-    }
-    
-    );
-
+    });
   }
 
-  
-  void choiceAction(String choice){
-    if(choice == Constants.Logout){
+  void choiceAction(String choice) {
+    if (choice == Constants.Logout) {
       print('logout presdsed');
       widget.signOut();
       Navigator.of(context).pushNamed("/");
-    }else if(choice == Constants.Home){
+    } else if (choice == Constants.Home) {
       Navigator.of(context).pushNamed("/");
       print('home pressed');
-    }else if(choice == Constants.PrivacyPolicy){
+    } else if (choice == Constants.PrivacyPolicy) {
       Navigator.of(context).pushNamed("/PrivacyPolicy");
       print('privacy pressed');
-   }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return new Scaffold(
         appBar: new AppBar(
-          actions: <Widget>[
-             PopupMenuButton<String>(
-               onSelected: choiceAction,
-               itemBuilder:(BuildContext context){
-                 return Constants.choices.map((String choice){
-                   return PopupMenuItem<String>(
-                     value: choice,
-                     child: Text(choice),
-                     );
-                 }).toList();
-               },
-             )
-           ],
-
-
-
-
+            actions: <Widget>[
+              PopupMenuButton<String>(
+                onSelected: choiceAction,
+                itemBuilder: (BuildContext context) {
+                  return Constants.choices.map((String choice) {
+                    return PopupMenuItem<String>(
+                      value: choice,
+                      child: Text(choice),
+                    );
+                  }).toList();
+                },
+              )
+            ],
             title: new Text("See A Tree",
                 style: new TextStyle(fontSize: 40.0),
                 textAlign: TextAlign.center),
-            backgroundColor: Colors.green),  
+            backgroundColor: Colors.green),
         body: new Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,26 +223,51 @@ class HomePageState extends State<HomePage> {
                   width: 150.0,
                   height: 150.0,
                 ),
-                PictureButton(
-                  image: "assets/tree2.png",
-                  text: "My Trees",
-                  nextpage: "/MyTrees",
-                  width: 150.0,
-                  height: 150.0,
-                ),
+                new RaisedButton(
+                    padding: new EdgeInsets.all(10.0),
+                    color: Colors.white,
+                    child: new Column(
+                      children: <Widget>[
+                        new Image(
+                            image: new AssetImage("assets/tree2.png"),
+                            width: 150.0,
+                            height: 150.0),
+                        new Text("My Trees"),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/MyTrees");
+                      globals.current_user_longitude =
+                          _startLocation["longitude"].toString();
+                      globals.current_user_latitude =
+                          _startLocation["latitude"].toString();
+                    }),
               ],
             ),
+
             new Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                PictureButton(
-                  image: "assets/tree3.png",
-                  text: "Everyones Tree",
-                  nextpage: "/Community",
-                  width: 330.0,
-                  height: 150.0,
-                ),
+                new RaisedButton(
+                    padding: new EdgeInsets.all(10.0),
+                    color: Colors.white,
+                    child: new Column(
+                      children: <Widget>[
+                        new Image(
+                            image: new AssetImage("assets/tree3.png"),
+                            width: 330.0,
+                            height: 150.0),
+                        new Text("Everyones Tree"),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/Community");
+                      globals.current_user_longitude =
+                          _startLocation["longitude"].toString();
+                      globals.current_user_latitude =
+                          _startLocation["latitude"].toString();
+                    }),
               ],
             ),
           ],

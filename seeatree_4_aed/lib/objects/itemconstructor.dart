@@ -96,6 +96,14 @@ class Item {
     if (health == null) {
       health = '';
     }
+    latitude = data["Latitude"];
+    if (latitude == null) {
+      latitude = '';
+    }
+    longitude = data["Longitude"];
+    if (longitude == null) {
+      longitude = '';
+    }
     landmark = data["Landmark"];
     if (landmark == null) {
       landmark = '';
