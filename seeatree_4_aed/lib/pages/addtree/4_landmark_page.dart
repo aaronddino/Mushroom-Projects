@@ -64,7 +64,7 @@ class LandmarkStatusPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   new TextCard(
-                      text: "Aesthetically pleasing",
+                      text: "Nice looking",
                       size: 12.0,
                       box: Colors.grey[200]),
                   new Text(

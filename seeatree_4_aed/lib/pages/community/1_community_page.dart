@@ -86,7 +86,10 @@ class CommunityTreesState extends State<CommunityTreesPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(items[4].species);
+    print(globals.allitems[0].latitude);
+    print(globals.allitems[0].longitude);
+    print(globals.allitems[0].latitude);
+    print(globals.allitems.length);
   
     
     //int x = 0;
