@@ -19,7 +19,7 @@ import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:seeatree_4_aed/objects/Firebase.dart';
 //import 'dart:async';
 
-var apiKey = "";
+var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
 
 class CommunityTreesPage extends StatefulWidget {
   @override
@@ -35,26 +35,47 @@ class CommunityTreesState extends State<CommunityTreesPage> {
   var staticMapProvider = new StaticMapProvider(apiKey);
   Uri staticMapUri;
   String test = "";
+
+  List<Marker> markers = <Marker>[
+
+  ];
+
+  void makemarkers(List<Marker> markers){
+    for(int i = 0; i < globals.allitems.length; i++){ 
+      markers.add(new Marker(i.toString(), globals.allitems[i].species, double.parse(globals.allitems[i].latitude), double.parse(globals.allitems[i].longitude), 
+      markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)));
+    }
+  }
+
   
 
   showMap() {
     mapView.show(new MapOptions(
       mapViewType: MapViewType.normal,
       initialCameraPosition:
-          new CameraPosition(new Location(-27.340060, 153.038300), 15.0),
+          new CameraPosition(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), 15.0),
       showUserLocation: true,
       title: "Tree Locations (Community)",
     ));
+    mapView.setMarkers(markers);
+    mapView.zoomToFit(padding: 100);
+
+    mapView.onMapReady.listen((_){
+      setState(() {
+        mapView.setMarkers(markers);
+        mapView.zoomToFit(padding: 100);
+      });
+    });
   }
 
   @override
   void initState() {
     super.initState();
     cameraPosition = new CameraPosition(
-        new Location(/*latitude*/ -27.340060, /*longitude*/ 153.038300),
+        new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)),
         /*zoom*/ 2.0);
     staticMapUri = staticMapProvider.getStaticUri(
-        new Location(-27.340060, 153.038300), 12,
+        new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), 12,
         height: 100, width: 400, mapType: StaticMapViewType.roadmap);
     final FirebaseDatabase database = FirebaseDatabase
         .instance; //Rather then just writing FirebaseDatabase(), get the instance.
@@ -90,9 +111,7 @@ class CommunityTreesState extends State<CommunityTreesPage> {
     print(globals.allitems[0].longitude);
     print(globals.allitems[0].latitude);
     print(globals.allitems.length);
-  
-    
-    //int x = 0;
+    makemarkers(markers);
     return new Scaffold(
       appBar: new AppBar(
             title: new Text("Everyones Trees"), 
@@ -121,11 +140,11 @@ class CommunityTreesState extends State<CommunityTreesPage> {
               children: <Widget>[
                 new InkWell(
                   child: new Center(
-                    child: new Image.network(staticMapUri.toString()),
+                    child: new Image.asset("assets/tree1.png"),
                   ),
                   onTap: showMap,
                 ),
-                new Text("View Map"),
+                new Text("Click to View Map"),
               ],
             ),
           ),
