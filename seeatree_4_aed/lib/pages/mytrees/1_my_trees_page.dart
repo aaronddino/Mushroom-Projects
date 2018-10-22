@@ -58,14 +58,7 @@ class MyTreesState extends State<MyTreesPage>{
       markers.add(new Marker(i.toString(), globals.myitems[i].species, double.parse(globals.myitems[i].latitude), double.parse(globals.myitems[i].longitude), 
       markerIcon: new MarkerIcon("assets/Shape.png", width: 100.0, height: 100.0)));
     }
-    //markers.add(x);
   }
-  Marker x = new Marker("1", "Home", -27.340060, 153.038300,
-    color: Colors.green[200], markerIcon: new MarkerIcon(
-        "assets/tree1.png", //Asset to be used as icon
-        width: 112.0, //New width for the asset
-        height: 75.0, // New height for the asset
-      ));
   
   showMap(){
     mapView.show(
@@ -129,10 +122,7 @@ class MyTreesState extends State<MyTreesPage>{
                   ),
                   onTap: showMap,
               ),
-              new Text("View Map"),
-              new Text("Alice's coding skills level:"+globals.allitems[0].health),
-              new Text(globals.allitems[0].latitude),
-              new Text(globals.allitems[0].longitude),
+              new Text("Click to View Map"),
               ],
             ),
           ),
