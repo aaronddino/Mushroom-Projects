@@ -44,12 +44,10 @@ class HabitatStatusPage extends StatelessWidget {
                 text: "Does this tree house animals and plants?",
                 size: 15.0,
                 box: Colors.grey[200]),
-            PictureButtonNoText(
-              image: "assets/Habitat.png",
-              nextpage: "/HabitatStatus",
-              width: 160.0,
-              height: 200.0,
-            ),
+            new Image(
+                  image: new AssetImage("assets/Habitat.png"),
+                  width: 250.0,
+                  height: 250.0),
             new Column(
               children: <Widget>[
                 //new Text("Provides a home for animals such as birds"),

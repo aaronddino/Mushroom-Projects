@@ -258,7 +258,7 @@ class HomePageState extends State<HomePage> {
                             image: new AssetImage("assets/tree3.png"),
                             width: 330.0,
                             height: 150.0),
-                        new Text("Everyones Tree"),
+                        new Text("Everyone's Tree"),
                       ],
                     ),
                     onPressed: () {

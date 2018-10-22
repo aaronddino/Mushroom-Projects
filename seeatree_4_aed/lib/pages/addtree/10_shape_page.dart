@@ -43,7 +43,7 @@ class ShapeStatusPage extends StatelessWidget{
           new TextCard(text:"Does this tree present unusual growth or form?", size: 15.0, box:Colors.grey[200]),
           PictureButtonNoText(
             image: "assets/Shape.png",
-            nextpage: "/HistoricalStatus",
+            nextpage: "/ShapeInfo",
             width: 160.0,
             height: 200.0,
           ),

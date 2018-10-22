@@ -14,6 +14,7 @@ import 'package:map_view/map_view.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:seeatree_4_aed/objects/item.dart' as globals;
 import 'package:firebase_database/firebase_database.dart';
+import 'package:seeatree_4_aed/objects/itemconstructor.dart';
 //import 'dart:async';
 
 var apiKey = "AIzaSyDG7K0hQsak5XiJQmky627NprbaB61QJwo";
@@ -25,6 +26,9 @@ class MyTreesPage extends StatefulWidget{
 }
 
 class MyTreesState extends State<MyTreesPage>{
+  List<Item> items = List();
+  Item item;
+  DatabaseReference itemRef;
   MapView mapView = new MapView();
   CameraPosition cameraPosition;
   var staticMapProvider = new StaticMapProvider(apiKey);
@@ -85,6 +89,29 @@ class MyTreesState extends State<MyTreesPage>{
     super.initState();
     cameraPosition = new CameraPosition(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), /*zoom*/2.0);
     staticMapUri = staticMapProvider.getStaticUri(new Location(double.parse(globals.current_user_latitude), double.parse(globals.current_user_longitude)), 12, height: 100, width: 400, mapType: StaticMapViewType.roadmap);
+    final FirebaseDatabase database = FirebaseDatabase
+        .instance; //Rather then just writing FirebaseDatabase(), get the instance.
+    itemRef = database.reference().child('items');
+    itemRef.onChildAdded.listen(_onEntryAdded);
+    itemRef.onChildChanged.listen(_onEntryChanged);
+  }
+
+  _onEntryAdded(Event event) {
+    setState(() {
+      items.add(Item.fromSnapshot(event.snapshot));
+      
+    });
+  }
+
+
+  _onEntryChanged(Event event) {
+  
+    var old = items.singleWhere((entry) {
+      return entry.key == event.snapshot.key;
+    });
+    setState(() {
+      items[items.indexOf(old)] = Item.fromSnapshot(event.snapshot);
+    });
   }
 
   @override
@@ -118,7 +145,7 @@ class MyTreesState extends State<MyTreesPage>{
               children: <Widget>[
                 new InkWell(
                   child: new Center(
-                    child:new Image.asset("assets/tree1.png")
+                    child:new Image.asset("assets/map_holder.PNG")
                   ),
                   onTap: showMap,
               ),
@@ -143,6 +170,8 @@ class MyTreesState extends State<MyTreesPage>{
                 return new RaisedButton(
                   color: Colors.white,
                     onPressed: () {
+                      globals.communityinfokey = items[index].key;
+                      Navigator.of(context).pushNamed("/InfoCommunity");
 
                     },
                     child: new ListTile(

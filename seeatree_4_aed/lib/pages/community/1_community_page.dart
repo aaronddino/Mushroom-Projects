@@ -107,14 +107,10 @@ class CommunityTreesState extends State<CommunityTreesPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(globals.allitems[0].latitude);
-    print(globals.allitems[0].longitude);
-    print(globals.allitems[0].latitude);
-    print(globals.allitems.length);
     makemarkers(markers);
     return new Scaffold(
       appBar: new AppBar(
-            title: new Text("Everyones Trees"), 
+            title: new Text("Everyone's Trees"), 
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),
@@ -140,7 +136,7 @@ class CommunityTreesState extends State<CommunityTreesPage> {
               children: <Widget>[
                 new InkWell(
                   child: new Center(
-                    child: new Image.asset("assets/tree1.png"),
+                    child: new Image.asset("assets/map_holder.PNG"),
                   ),
                   onTap: showMap,
                 ),

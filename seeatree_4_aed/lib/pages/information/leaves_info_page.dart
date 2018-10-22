@@ -60,7 +60,7 @@ class LackLeavesInfoPage extends StatelessWidget{
       appBar: new AppBar(title: new Text("What does a Lack of Leaves Mean?"), backgroundColor: Colors.green),
       body: new Column(
         children: <Widget>[
-          new Image(image: new AssetImage("assets/placeholder.png"), height: 250.0, width: 300.0),
+          new Image(image: new AssetImage("assets/lack_leaves.png"), height: 250.0, width: 300.0),
           new Flexible( //Information
            
             child: new ListView(

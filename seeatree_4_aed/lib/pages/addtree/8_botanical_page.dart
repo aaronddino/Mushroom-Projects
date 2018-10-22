@@ -43,7 +43,7 @@ class BotanicalStatusPage extends StatelessWidget{
           new TextCard(text:"Is this tree rare in the wild?", size: 15.0, box:Colors.grey[200]),
           PictureButtonNoText(
             image: "assets/Botanical.png",
-            nextpage: "/BotanicalStatus",
+            nextpage: "/RareInfo",
             width: 160.0,
             height: 200.0,
           ),

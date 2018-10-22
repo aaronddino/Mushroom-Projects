@@ -40,7 +40,8 @@ void _signedOut(){
 }
   @override
   Widget build(BuildContext context){
-    switch(authStatus){
+    
+        switch(authStatus){
       case AuthStatus.notSignedIn:
         return new LoginPage
         (auth: widget.auth,
@@ -52,6 +53,8 @@ void _signedOut(){
            onSignedOut:_signedOut,
         );
     }
+      
+    
     
   }
 }

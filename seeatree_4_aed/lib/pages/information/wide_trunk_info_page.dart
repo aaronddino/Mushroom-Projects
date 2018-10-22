@@ -59,7 +59,7 @@ class WideTrunkInfoPage extends StatelessWidget{
       appBar: new AppBar(title: new Text("What is a Wide Trunk?"), backgroundColor: Colors.green),
       body: new Column(
         children: <Widget>[
-          new Image(image: new AssetImage("assets/placeholder.png"), height: 250.0, width: 300.0),
+          new Image(image: new AssetImage("assets/wide_trunk.png"), height: 250.0, width: 300.0),
           new Flexible( //Information
           
             child: new ListView(

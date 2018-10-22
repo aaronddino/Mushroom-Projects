@@ -45,12 +45,10 @@ class PermissionPage extends StatelessWidget {
                     "Is tree owner aware of this survey record being submitted?",
                 size: 30.0,
                 box: Colors.grey[200]),
-            PictureButtonNoText(
-              image: "assets/home_tree.png",
-              nextpage: "/BotanicalStatus",
-              width: 250.0,
-              height: 250.0,
-            ),
+            new Image(
+                  image: new AssetImage("assets/home_tree.png"),
+                  width: 250.0,
+                  height: 250.0),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
               child: new Row(

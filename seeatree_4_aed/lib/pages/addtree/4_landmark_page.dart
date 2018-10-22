@@ -20,23 +20,23 @@ class LandmarkStatusPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-            title: new Text("Landmark"), 
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.info_outline),
-                onPressed: (){
-                  Navigator.of(context).pushNamed("/poprules");
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.home),
-                onPressed: (){
-                  Navigator.of(context).pushNamed("/HomePage");
-                },
-              ),
-            ],
-            backgroundColor: Colors.green,
+          title: new Text("Landmark"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.info_outline),
+              onPressed: () {
+                Navigator.of(context).pushNamed("/poprules");
+              },
             ),
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.of(context).pushNamed("/HomePage");
+              },
+            ),
+          ],
+          backgroundColor: Colors.green,
+        ),
         body: new Container(
             child: new Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,10 +47,12 @@ class LandmarkStatusPage extends StatelessWidget {
                   size: 15.0,
                   box: Colors.grey[200]),
               //Tree image
-              new Image(
-                  image: new AssetImage("assets/Landmark.png"),
-                  width: 330.0,
-                  height: 150.0),
+              PictureButtonNoText(
+                image: "assets/Landmark.png",
+                nextpage: "/LandmarkInfo",
+                width: 330.0,
+                height: 150.0,
+              ),
               new Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch, //?
                 children: <Widget>[
@@ -64,9 +66,7 @@ class LandmarkStatusPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   new TextCard(
-                      text: "Nice looking",
-                      size: 12.0,
-                      box: Colors.grey[200]),
+                      text: "Nice looking", size: 12.0, box: Colors.grey[200]),
                   new Text(
                     "OR",
                     style: new TextStyle(fontSize: 15.0),
@@ -86,52 +86,53 @@ class LandmarkStatusPage extends StatelessWidget {
                 ],
               ),
               Padding(
-              padding: EdgeInsets.symmetric(vertical: 30.0,horizontal: 10.0),
-              child: new Row(
-                //crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new RaisedButton(
-                    color: Colors.lightGreenAccent,
-                    child: new Column(
-                      children: <Widget>[
-                        new Text("Yes"),
-                      ],
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+                child: new Row(
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new RaisedButton(
+                      color: Colors.lightGreenAccent,
+                      child: new Column(
+                        children: <Widget>[
+                          new Text("Yes"),
+                        ],
+                      ),
+                      onPressed: () {
+                        globals.item.landmark = "Yes";
+                        Navigator.of(context).pushNamed("/SizeStatus");
+                      },
                     ),
-                    onPressed: () {
-                      globals.item.landmark = "Yes";
-                      Navigator.of(context).pushNamed("/SizeStatus");
-                    },
-                  ),
-                  Container(
-                    width: 150.0,
-                  child: new RaisedButton(
-                    color: Colors.orange,
-                    child: new Column(
-                      children: <Widget>[
-                        new Text("I'm not sure"),
-                      ],
+                    Container(
+                      width: 150.0,
+                      child: new RaisedButton(
+                        color: Colors.orange,
+                        child: new Column(
+                          children: <Widget>[
+                            new Text("I'm not sure"),
+                          ],
+                        ),
+                        onPressed: () {
+                          globals.item.landmark = "n/a";
+                          Navigator.of(context).pushNamed("/SizeStatus");
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      globals.item.landmark = "n/a";
-                      Navigator.of(context).pushNamed("/SizeStatus");
-                    },
-                  ),),
-                  new RaisedButton(
-                    color: Colors.redAccent,
-                    child: new Column(
-                      children: <Widget>[
-                        new Text("No"),
-                      ],
+                    new RaisedButton(
+                      color: Colors.redAccent,
+                      child: new Column(
+                        children: <Widget>[
+                          new Text("No"),
+                        ],
+                      ),
+                      onPressed: () {
+                        globals.item.landmark = "No";
+                        Navigator.of(context).pushNamed("/SizeStatus");
+                      },
                     ),
-                    onPressed: () {
-                      globals.item.landmark = "No";
-                      Navigator.of(context).pushNamed("/SizeStatus");
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
             ])));
   }
 }

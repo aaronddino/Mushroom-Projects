@@ -43,7 +43,7 @@ class HistoricalStatusPage extends StatelessWidget{
           new TextCard(text:"Does this tree have history?", size: 15.0, box:Colors.grey[200]),
           PictureButtonNoText(
             image: "assets/Historical.png",
-            nextpage: "/HistoricalStatus",
+            nextpage: "/HistoricInfo",
             width: 160.0,
             height: 200.0,
           ),
